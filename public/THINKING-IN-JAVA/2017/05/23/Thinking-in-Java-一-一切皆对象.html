@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Thinking in Java(一)一切皆对象 | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="读书笔记" />
+    
+    <meta name="description" content="java的设计尽管java是基于C++开发的,但是java是一个纯粹的面向对象的程序设计语言;C++之所以成为一种杂合行的设计语言,是因为C++支持C语言的向后兼容,但是这种兼容却让C++变得臃肿,java是基于C++而简化了C++中比较臃肿的东西 引用操作对象每种计算机语言都有自己操作内存元素的方式.java是面向对象的,因此java采用一个固定的方式来操作内存中的元素:  java中通过引用来">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinking in Java(一)一切皆对象">
+<meta property="og:url" content="http://www.fireworm.online/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="java的设计尽管java是基于C++开发的,但是java是一个纯粹的面向对象的程序设计语言;C++之所以成为一种杂合行的设计语言,是因为C++支持C语言的向后兼容,但是这种兼容却让C++变得臃肿,java是基于C++而简化了C++中比较臃肿的东西 引用操作对象每种计算机语言都有自己操作内存元素的方式.java是面向对象的,因此java采用一个固定的方式来操作内存中的元素:  java中通过引用来">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/thinking_in_java_basic.jpg">
+<meta property="og:updated_time" content="2017-05-23T15:30:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thinking in Java(一)一切皆对象">
+<meta name="twitter:description" content="java的设计尽管java是基于C++开发的,但是java是一个纯粹的面向对象的程序设计语言;C++之所以成为一种杂合行的设计语言,是因为C++支持C语言的向后兼容,但是这种兼容却让C++变得臃肿,java是基于C++而简化了C++中比较臃肿的东西 引用操作对象每种计算机语言都有自己操作内存元素的方式.java是面向对象的,因此java采用一个固定的方式来操作内存中的元素:  java中通过引用来">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/thinking_in_java_basic.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Thinking-in-Java-一-一切皆对象" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Thinking in Java(一)一切皆对象
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" class="article-date">
+            <time datetime="2017-05-23T15:30:14.000Z" itemprop="datePublished">2017-05-23</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/读书笔记/">读书笔记</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h4 id="java的设计"><a href="#java的设计" class="headerlink" title="java的设计"></a>java的设计</h4><p>尽管java是基于C++开发的,但是java是一个纯粹的面向对象的程序设计语言;C++之所以成为一种杂合行的设计语言,是因为C++支持C语言的向后兼容,但是这种兼容却让C++变得臃肿,java是基于C++而简化了C++中比较臃肿的东西</p>
+<h4 id="引用操作对象"><a href="#引用操作对象" class="headerlink" title="引用操作对象"></a>引用操作对象</h4><p>每种计算机语言都有自己操作内存元素的方式.java是面向对象的,因此java采用一个固定的方式来操作内存中的元素:</p>
+<ol>
+<li>java中通过引用来操作对象</li>
+<li>这就好比遥控器与电视的关系,我们操作的是遥控器,再由遥控器来操作电视</li>
+<li>此外,即使没有电视机遥控器也可以独立的存在,也就是说你可以有一个引用,但是不必有对象与其关联</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个引用,没有对象指定</span></div><div class="line">String s;</div></pre></td></tr></table></figure>
+<h4 id="java中的内存模型"><a href="#java中的内存模型" class="headerlink" title="java中的内存模型"></a>java中的内存模型</h4><ol>
+<li><font color="blue">寄存器:</font>寄存器是最快的存储区域,因为它位于处理器的内部.我们采用java是无法直接操作寄存器的</li>
+<li><font color="blue">堆栈:</font>堆栈是位于RAM(随机访问存储器),堆栈的指针向下移动则分配新的内存,堆栈指针向上移动则释放内存,堆栈的速度仅次于寄存器;我们平时使用的对象的引用就存在于堆栈中</li>
+<li><font color="blue">堆:</font>堆内存也位于RAM中,用于存储所有的java对象.当我们需要在堆栈中创建对象的时候只通过new关键字即可,当然这种方便也会带来一些额外的开销:用堆进行内存分配和清理比堆栈慢</li>
+<li><font color="blue">常量寄存器:</font>我们的常量一般是存储于代码中的,这样比较安全,我们也可以选择存储在ROM(只读存储器)中</li>
+<li><font color="blue">非RAM存储器:</font>如果数据完全存储于代码之外,比如流对象和持久化对象最终会被存储在磁盘或者其他的地方,这样反序列化的时候就会再次找到</li>
+</ol>
+<h4 id="基本数据类型的存储"><a href="#基本数据类型的存储" class="headerlink" title="基本数据类型的存储"></a>基本数据类型的存储</h4><p>java中并不是所有的变量都是通过new来进行创建的,我们对于比较小的常用的数据类型不使用new关键字创建,而是创建一个并非引用的’自动’变量,将这个变量的值直接存储于<font color="red">堆栈中</font>,这样提高了数据存储额效率</p>
+<h5 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h5><p>java中基本数据类型的大小都是固定的,这也是java夸平台原因之一</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>-</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>所有的数值类型都具有正负号,不要去寻求无符号的数值类型,boolean占的大小没有指定,但是只能存储true/false</p>
+<h5 id="高精度数字"><a href="#高精度数字" class="headerlink" title="高精度数字"></a>高精度数字</h5><p>java提供了两种高精度的计算:BigInteger和BigDecimal,能用基本数据类型操作的都可以用包装类型进行操作,但是需要调用方法.这么做复杂了许多,当然运算速度也慢了许多,这里是利用速度换取了精度</p>
+<ol>
+<li>BigInteger支持任意精度的整数运算</li>
+<li>BigDecimal支持任意精度的浮点型运算</li>
+</ol>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" data-id="cj31q2xn20004kwfiizajh5ef" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+    
+        <a href="/mysql/2017/05/21/join链接查询.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">join链接查询</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/thinking_in_java_basic.jpg)" alt="Thinking in Java(一)一切皆对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a></p>
+                            <p class="item-title"><a href="/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" class="title">Thinking in Java(一)一切皆对象</a></p>
+                            <p class="item-date"><time datetime="2017-05-23T15:30:14.000Z" itemprop="datePublished">2017-05-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/mysql/2017/05/21/join链接查询.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/mysql_basic.jpg)" alt="join链接查询" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/mysql/">mysql</a></p>
+                            <p class="item-title"><a href="/mysql/2017/05/21/join链接查询.html" class="title">join链接查询</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T11:27:58.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/mysql/2017/05/21/mysql数据类型.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/mysql_basic.jpg)" alt="mysql数据类型" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/mysql/">mysql</a></p>
+                            <p class="item-title"><a href="/mysql/2017/05/21/mysql数据类型.html" class="title">mysql数据类型</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T08:55:47.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/javaSE/2017/05/21/数组常用API.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/basic.jpg)" alt="数组常用API" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javaSE/">javaSE</a></p>
+                            <p class="item-title"><a href="/javaSE/2017/05/21/数组常用API.html" class="title">数组常用API</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T07:01:11.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/javaSE/2017/05/21/BigDecimal.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/basic.jpg)" alt="BigDecimal" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javaSE/">javaSE</a></p>
+                            <p class="item-title"><a href="/javaSE/2017/05/21/BigDecimal.html" class="title">BigDecimal</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T04:00:33.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 20px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

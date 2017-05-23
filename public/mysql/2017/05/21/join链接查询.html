@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>join链接查询 | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="链接查询" />
+    
+    <meta name="description" content="数据表结构表结构一:表结构二: Join从句的分类 Inner joininner join表示将两张表进行关联起来,查询里面的交集部分1SELECT * FROM user1 INNER JOIN user2 WHERE user1.username = user2.name; 查询结果:当查询*的时候是将两张表进行拼接起来 左外链接用途左外链接一般查询的是左表的所有和右表所匹配的数据,匹配不上">
+<meta name="keywords" content="链接查询">
+<meta property="og:type" content="article">
+<meta property="og:title" content="join链接查询">
+<meta property="og:url" content="http://www.fireworm.online/mysql/2017/05/21/join链接查询.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="数据表结构表结构一:表结构二: Join从句的分类 Inner joininner join表示将两张表进行关联起来,查询里面的交集部分1SELECT * FROM user1 INNER JOIN user2 WHERE user1.username = user2.name; 查询结果:当查询*的时候是将两张表进行拼接起来 左外链接用途左外链接一般查询的是左表的所有和右表所匹配的数据,匹配不上">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/mysql_basic.jpg">
+<meta property="og:updated_time" content="2017-05-21T11:27:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="join链接查询">
+<meta name="twitter:description" content="数据表结构表结构一:表结构二: Join从句的分类 Inner joininner join表示将两张表进行关联起来,查询里面的交集部分1SELECT * FROM user1 INNER JOIN user2 WHERE user1.username = user2.name; 查询结果:当查询*的时候是将两张表进行拼接起来 左外链接用途左外链接一般查询的是左表的所有和右表所匹配的数据,匹配不上">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/mysql_basic.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/mysql/">mysql</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-join链接查询" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        join链接查询
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/mysql/2017/05/21/join链接查询.html" class="article-date">
+            <time datetime="2017-05-21T11:27:58.000Z" itemprop="datePublished">2017-05-21</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/链接查询/">链接查询</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h4 id="数据表结构"><a href="#数据表结构" class="headerlink" title="数据表结构"></a>数据表结构</h4><p>表结构一:<br><img src="http://oayt7zau6.bkt.clouddn.com/mysql_join_table1.jpg" alt="enter image description here"><br>表结构二:<br><img src="http://oayt7zau6.bkt.clouddn.com/mysql_join_table2.jpg" alt="enter image description here"></p>
+<h4 id="Join从句的分类"><a href="#Join从句的分类" class="headerlink" title="Join从句的分类"></a>Join从句的分类</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/mysql_join%E4%BB%8E%E5%8F%A51.jpg" alt="enter image description here"></p>
+<h4 id="Inner-join"><a href="#Inner-join" class="headerlink" title="Inner join"></a>Inner join</h4><p>inner join表示将两张表进行关联起来,查询里面的交集部分<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1 <span class="keyword">INNER</span> <span class="keyword">JOIN</span> user2 <span class="keyword">WHERE</span> user1.username = user2.name;</div></pre></td></tr></table></figure></p>
+<p>查询结果:<br>当查询*的时候是将两张表进行拼接起来<br><img src="http://oayt7zau6.bkt.clouddn.com/inner_join%E7%BB%93%E6%9E%9C1.jpg" alt="enter image description here"></p>
+<h4 id="左外链接用途"><a href="#左外链接用途" class="headerlink" title="左外链接用途"></a>左外链接用途</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/%E5%B7%A6%E5%A4%96%E9%93%BE%E6%8E%A51.jpg" alt="enter image description here"><br>左外链接一般查询的是左表的所有和右表所匹配的数据,匹配不上的全是null<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1 <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">on</span> user1.username = user2.name</div></pre></td></tr></table></figure></p>
+<p>查询结果:<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%B7%A6%E5%A4%96%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C.jpg" alt="enter image description here"><br>查询只存在于左表中的数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1 <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">on</span> user1.username = user2.name <span class="keyword">WHERE</span> user2.name <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></div></pre></td></tr></table></figure></p>
+<p>查询结果:<br><img src="http://oayt7zau6.bkt.clouddn.com/inner_join%E7%BB%93%E6%9E%9C1.jpg" alt="enter image description here"></p>
+<h4 id="右外链接"><a href="#右外链接" class="headerlink" title="右外链接"></a>右外链接</h4><p>右外链接和左外链接是相对的,只不过是以右表为基准<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%8F%B3%E5%A4%96%E9%93%BE%E6%8E%A5.jpg" alt="enter image description here"></p>
+<h4 id="全连接"><a href="#全连接" class="headerlink" title="全连接"></a>全连接</h4><p>全连接表示可以查询出两个表所有的数据或两个表交集之外的数据<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%85%A8%E8%BF%9E%E6%8E%A5.jpg" alt="enter image description here"><br>代码演示:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">ON</span> user1.username = user2.name <span class="keyword">UNION</span> ALL <span class="keyword">SELECT</span> *  <span class="keyword">FROM</span> user1 <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">ON</span> user1.username = user2.name</div></pre></td></tr></table></figure></p>
+<p>查询结果:<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%BB%93%E6%9E%9C.jpg" alt="enter image description here"></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/mysql/2017/05/21/join链接查询.html" data-id="cj31q2xn30005kwfitppujfc1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Thinking in Java(一)一切皆对象
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/mysql/2017/05/21/mysql数据类型.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">mysql数据类型</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/thinking_in_java_basic.jpg)" alt="Thinking in Java(一)一切皆对象" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a></p>
+                            <p class="item-title"><a href="/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html" class="title">Thinking in Java(一)一切皆对象</a></p>
+                            <p class="item-date"><time datetime="2017-05-23T15:30:14.000Z" itemprop="datePublished">2017-05-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/mysql/2017/05/21/join链接查询.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/mysql_basic.jpg)" alt="join链接查询" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/mysql/">mysql</a></p>
+                            <p class="item-title"><a href="/mysql/2017/05/21/join链接查询.html" class="title">join链接查询</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T11:27:58.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/mysql/2017/05/21/mysql数据类型.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/mysql_basic.jpg)" alt="mysql数据类型" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/mysql/">mysql</a></p>
+                            <p class="item-title"><a href="/mysql/2017/05/21/mysql数据类型.html" class="title">mysql数据类型</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T08:55:47.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/javaSE/2017/05/21/数组常用API.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/basic.jpg)" alt="数组常用API" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javaSE/">javaSE</a></p>
+                            <p class="item-title"><a href="/javaSE/2017/05/21/数组常用API.html" class="title">数组常用API</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T07:01:11.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/javaSE/2017/05/21/BigDecimal.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/basic.jpg)" alt="BigDecimal" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/javaSE/">javaSE</a></p>
+                            <p class="item-title"><a href="/javaSE/2017/05/21/BigDecimal.html" class="title">BigDecimal</a></p>
+                            <p class="item-date"><time datetime="2017-05-21T04:00:33.000Z" itemprop="datePublished">2017-05-21</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/读书笔记/" style="font-size: 10px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 20px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/mysql/2017/05/21/join链接查询.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

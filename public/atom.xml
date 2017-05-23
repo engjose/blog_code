@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>SUPER-JOSE-大叔的技术博客</title>
+  <subtitle>There is no shortcut is a permanent shortcut</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://www.fireworm.online/"/>
+  <updated>2017-05-23T15:30:14.000Z</updated>
+  <id>http://www.fireworm.online/</id>
+  
+  <author>
+    <name>SUPER-JOSE</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Thinking in Java(一)一切皆对象</title>
+    <link href="http://www.fireworm.online/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-%E4%B8%80-%E4%B8%80%E5%88%87%E7%9A%86%E5%AF%B9%E8%B1%A1.html"/>
+    <id>http://www.fireworm.online/THINKING-IN-JAVA/2017/05/23/Thinking-in-Java-一-一切皆对象.html</id>
+    <published>2017-05-23T15:30:14.000Z</published>
+    <updated>2017-05-23T15:30:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="java的设计"><a href="#java的设计" class="headerlink" title="java的设计"></a>java的设计</h4><p>尽管java是基于C++开发的,但是java是一个纯粹的面向对象的程序设计语言;C++之所以成为一种杂合行的设计语言,是因为C++支持C语言的向后兼容,但是这种兼容却让C++变得臃肿,java是基于C++而简化了C++中比较臃肿的东西</p>
+<h4 id="引用操作对象"><a href="#引用操作对象" class="headerlink" title="引用操作对象"></a>引用操作对象</h4><p>每种计算机语言都有自己操作内存元素的方式.java是面向对象的,因此java采用一个固定的方式来操作内存中的元素:</p>
+<ol>
+<li>java中通过引用来操作对象</li>
+<li>这就好比遥控器与电视的关系,我们操作的是遥控器,再由遥控器来操作电视</li>
+<li>此外,即使没有电视机遥控器也可以独立的存在,也就是说你可以有一个引用,但是不必有对象与其关联</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个引用,没有对象指定</span></div><div class="line">String s;</div></pre></td></tr></table></figure>
+<h4 id="java中的内存模型"><a href="#java中的内存模型" class="headerlink" title="java中的内存模型"></a>java中的内存模型</h4><ol>
+<li><font color="blue">寄存器:</font>寄存器是最快的存储区域,因为它位于处理器的内部.我们采用java是无法直接操作寄存器的</li>
+<li><font color="blue">堆栈:</font>堆栈是位于RAM(随机访问存储器),堆栈的指针向下移动则分配新的内存,堆栈指针向上移动则释放内存,堆栈的速度仅次于寄存器;我们平时使用的对象的引用就存在于堆栈中</li>
+<li><font color="blue">堆:</font>堆内存也位于RAM中,用于存储所有的java对象.当我们需要在堆栈中创建对象的时候只通过new关键字即可,当然这种方便也会带来一些额外的开销:用堆进行内存分配和清理比堆栈慢</li>
+<li><font color="blue">常量寄存器:</font>我们的常量一般是存储于代码中的,这样比较安全,我们也可以选择存储在ROM(只读存储器)中</li>
+<li><font color="blue">非RAM存储器:</font>如果数据完全存储于代码之外,比如流对象和持久化对象最终会被存储在磁盘或者其他的地方,这样反序列化的时候就会再次找到</li>
+</ol>
+<h4 id="基本数据类型的存储"><a href="#基本数据类型的存储" class="headerlink" title="基本数据类型的存储"></a>基本数据类型的存储</h4><p>java中并不是所有的变量都是通过new来进行创建的,我们对于比较小的常用的数据类型不使用new关键字创建,而是创建一个并非引用的’自动’变量,将这个变量的值直接存储于<font color="red">堆栈中</font>,这样提高了数据存储额效率</p>
+<h5 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h5><p>java中基本数据类型的大小都是固定的,这也是java夸平台原因之一</p>
+<table>
+<thead>
+<tr>
+<th>基本类型</th>
+<th>大小</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>-</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>1</td>
+</tr>
+<tr>
+<td>short</td>
+<td>2</td>
+</tr>
+<tr>
+<td>int</td>
+<td>4</td>
+</tr>
+<tr>
+<td>long</td>
+<td>8</td>
+</tr>
+<tr>
+<td>float</td>
+<td>4</td>
+</tr>
+<tr>
+<td>double</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>所有的数值类型都具有正负号,不要去寻求无符号的数值类型,boolean占的大小没有指定,但是只能存储true/false</p>
+<h5 id="高精度数字"><a href="#高精度数字" class="headerlink" title="高精度数字"></a>高精度数字</h5><p>java提供了两种高精度的计算:BigInteger和BigDecimal,能用基本数据类型操作的都可以用包装类型进行操作,但是需要调用方法.这么做复杂了许多,当然运算速度也慢了许多,这里是利用速度换取了精度</p>
+<ol>
+<li>BigInteger支持任意精度的整数运算</li>
+<li>BigDecimal支持任意精度的浮点型运算</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;java的设计&quot;&gt;&lt;a href=&quot;#java的设计&quot; class=&quot;headerlink&quot; title=&quot;java的设计&quot;&gt;&lt;/a&gt;java的设计&lt;/h4&gt;&lt;p&gt;尽管java是基于C++开发的,但是java是一个纯粹的面向对象的程序设计语言;C++之所以成为一种
+    
+    </summary>
+    
+      <category term="THINKING IN JAVA" scheme="http://www.fireworm.online/categories/THINKING-IN-JAVA/"/>
+    
+    
+      <category term="读书笔记" scheme="http://www.fireworm.online/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>join链接查询</title>
+    <link href="http://www.fireworm.online/mysql/2017/05/21/join%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2.html"/>
+    <id>http://www.fireworm.online/mysql/2017/05/21/join链接查询.html</id>
+    <published>2017-05-21T11:27:58.000Z</published>
+    <updated>2017-05-21T11:27:58.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="数据表结构"><a href="#数据表结构" class="headerlink" title="数据表结构"></a>数据表结构</h4><p>表结构一:<br><img src="http://oayt7zau6.bkt.clouddn.com/mysql_join_table1.jpg" alt="enter image description here"><br>表结构二:<br><img src="http://oayt7zau6.bkt.clouddn.com/mysql_join_table2.jpg" alt="enter image description here"></p>
+<h4 id="Join从句的分类"><a href="#Join从句的分类" class="headerlink" title="Join从句的分类"></a>Join从句的分类</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/mysql_join%E4%BB%8E%E5%8F%A51.jpg" alt="enter image description here"></p>
+<h4 id="Inner-join"><a href="#Inner-join" class="headerlink" title="Inner join"></a>Inner join</h4><p>inner join表示将两张表进行关联起来,查询里面的交集部分<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1 <span class="keyword">INNER</span> <span class="keyword">JOIN</span> user2 <span class="keyword">WHERE</span> user1.username = user2.name;</div></pre></td></tr></table></figure></p>
+<p>查询结果:<br>当查询*的时候是将两张表进行拼接起来<br><img src="http://oayt7zau6.bkt.clouddn.com/inner_join%E7%BB%93%E6%9E%9C1.jpg" alt="enter image description here"></p>
+<h4 id="左外链接用途"><a href="#左外链接用途" class="headerlink" title="左外链接用途"></a>左外链接用途</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/%E5%B7%A6%E5%A4%96%E9%93%BE%E6%8E%A51.jpg" alt="enter image description here"><br>左外链接一般查询的是左表的所有和右表所匹配的数据,匹配不上的全是null<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1 <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">on</span> user1.username = user2.name</div></pre></td></tr></table></figure></p>
+<p>查询结果:<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%B7%A6%E5%A4%96%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C.jpg" alt="enter image description here"><br>查询只存在于左表中的数据<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1 <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">on</span> user1.username = user2.name <span class="keyword">WHERE</span> user2.name <span class="keyword">IS</span> <span class="keyword">NOT</span> <span class="literal">NULL</span></div></pre></td></tr></table></figure></p>
+<p>查询结果:<br><img src="http://oayt7zau6.bkt.clouddn.com/inner_join%E7%BB%93%E6%9E%9C1.jpg" alt="enter image description here"></p>
+<h4 id="右外链接"><a href="#右外链接" class="headerlink" title="右外链接"></a>右外链接</h4><p>右外链接和左外链接是相对的,只不过是以右表为基准<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%8F%B3%E5%A4%96%E9%93%BE%E6%8E%A5.jpg" alt="enter image description here"></p>
+<h4 id="全连接"><a href="#全连接" class="headerlink" title="全连接"></a>全连接</h4><p>全连接表示可以查询出两个表所有的数据或两个表交集之外的数据<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%85%A8%E8%BF%9E%E6%8E%A5.jpg" alt="enter image description here"><br>代码演示:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> user1  <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">ON</span> user1.username = user2.name <span class="keyword">UNION</span> ALL <span class="keyword">SELECT</span> *  <span class="keyword">FROM</span> user1 <span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> user2 <span class="keyword">ON</span> user1.username = user2.name</div></pre></td></tr></table></figure></p>
+<p>查询结果:<br><img src="http://oayt7zau6.bkt.clouddn.com/%E5%85%A8%E8%BF%9E%E6%8E%A5%E7%BB%93%E6%9E%9C.jpg" alt="enter image description here"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;数据表结构&quot;&gt;&lt;a href=&quot;#数据表结构&quot; class=&quot;headerlink&quot; title=&quot;数据表结构&quot;&gt;&lt;/a&gt;数据表结构&lt;/h4&gt;&lt;p&gt;表结构一:&lt;br&gt;&lt;img src=&quot;http://oayt7zau6.bkt.clouddn.com/mysql_
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.fireworm.online/categories/mysql/"/>
+    
+    
+      <category term="链接查询" scheme="http://www.fireworm.online/tags/%E9%93%BE%E6%8E%A5%E6%9F%A5%E8%AF%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql数据类型</title>
+    <link href="http://www.fireworm.online/mysql/2017/05/21/mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html"/>
+    <id>http://www.fireworm.online/mysql/2017/05/21/mysql数据类型.html</id>
+    <published>2017-05-21T08:55:47.000Z</published>
+    <updated>2017-05-21T08:55:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="mysql数据类型以及语句分类"><a href="#mysql数据类型以及语句分类" class="headerlink" title="mysql数据类型以及语句分类"></a>mysql数据类型以及语句分类</h3><p>跟学习java一样,我们在学习mysql之前需要理解mysql中的数据类型,接下来就介绍一下mysql中的几种数据类型,具体的使用哪种数据类型还需要根据当时的场景来定义</p>
+<h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/mysql%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B_%E6%95%B4%E5%BD%A2.jpg" alt="enter image description here"></p>
+<h4 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/mysql_%E5%8F%8C%E7%B2%BE%E5%BA%A6.jpg" alt="enter image description here"></p>
+<h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/mysql_%E5%AD%97%E7%AC%A6%E4%B8%B2.jpg" alt="enter image description here"></p>
+<h4 id="时间类型"><a href="#时间类型" class="headerlink" title="时间类型"></a>时间类型</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/mysql_%E6%97%B6%E9%97%B4%E7%B1%BB%E5%9E%8B.jpg" alt="enter image description here"></p>
+<h4 id="mysql的语句分类"><a href="#mysql的语句分类" class="headerlink" title="mysql的语句分类"></a>mysql的语句分类</h4><p><img src="http://oayt7zau6.bkt.clouddn.com/sql%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%88%86%E7%B1%BB.jpg" alt="enter image description here"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;mysql数据类型以及语句分类&quot;&gt;&lt;a href=&quot;#mysql数据类型以及语句分类&quot; class=&quot;headerlink&quot; title=&quot;mysql数据类型以及语句分类&quot;&gt;&lt;/a&gt;mysql数据类型以及语句分类&lt;/h3&gt;&lt;p&gt;跟学习java一样,我们在学习mys
+    
+    </summary>
+    
+      <category term="mysql" scheme="http://www.fireworm.online/categories/mysql/"/>
+    
+    
+      <category term="mysql基础" scheme="http://www.fireworm.online/tags/mysql%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数组常用API</title>
+    <link href="http://www.fireworm.online/javaSE/2017/05/21/%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8API.html"/>
+    <id>http://www.fireworm.online/javaSE/2017/05/21/数组常用API.html</id>
+    <published>2017-05-21T07:01:11.000Z</published>
+    <updated>2017-05-21T07:01:11.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="数组注意事项"><a href="#数组注意事项" class="headerlink" title="数组注意事项"></a>数组注意事项</h3><p>对于数组的定义和一般使用技巧,我们肯定都是比较熟悉了.这里主要介绍一下数据的一些好用API以及注意事项</p>
+<h4 id="数组的基本使用—创建数组"><a href="#数组的基本使用—创建数组" class="headerlink" title="数组的基本使用—创建数组"></a>数组的基本使用—创建数组</h4><ul>
+<li>当创建一个数字型的数组时,所有元素都初始化为0</li>
+<li>当创建boolean类型的数组时,所有元素都初始化为false</li>
+<li>当创建一个对象数组时,所有元素都初始化为null,例如:<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//创建一个包含十个字符串的数组,但是每一个的初始化字符串都是null</span></div><div class="line">String[] str = <span class="keyword">new</span> String[<span class="number">10</span>]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="数组工具类常用API—Arrays"><a href="#数组工具类常用API—Arrays" class="headerlink" title="数组工具类常用API—Arrays"></a>数组工具类常用API—Arrays</h4><p><font color="blue">static <t> T[] copyOf(T[] original, int newLength) </t></font>—将original数组拷贝newLength个到一个新的数组中,方法的返回值是一个新的数组</p>
+<p><font color="blue">static void sort(type[] a)</font>—将数组进行排序,使用的是快排,效率比较高</p>
+<p><font color="blue">static int binarySearch(type[] a, type key)</font>—在数组a中进行二分查找key,如果查找成功则返回下标值,否则返回一个负数</p>
+<p><font color="blue">static void fill(type[] a, type v)</font>—将数组的所有数据元素赋值为v</p>
+<p><font color="blue">boolean equals(type[] a, type[] b)</font>—如果两个数组大小相同,并且下标相同的元素都相同返回true,否则返回false</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;数组注意事项&quot;&gt;&lt;a href=&quot;#数组注意事项&quot; class=&quot;headerlink&quot; title=&quot;数组注意事项&quot;&gt;&lt;/a&gt;数组注意事项&lt;/h3&gt;&lt;p&gt;对于数组的定义和一般使用技巧,我们肯定都是比较熟悉了.这里主要介绍一下数据的一些好用API以及注意事项&lt;/p
+    
+    </summary>
+    
+      <category term="javaSE" scheme="http://www.fireworm.online/categories/javaSE/"/>
+    
+    
+      <category term="集合体系" scheme="http://www.fireworm.online/tags/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>BigDecimal</title>
+    <link href="http://www.fireworm.online/javaSE/2017/05/21/BigDecimal.html"/>
+    <id>http://www.fireworm.online/javaSE/2017/05/21/BigDecimal.html</id>
+    <published>2017-05-21T04:00:33.000Z</published>
+    <updated>2017-05-21T04:00:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="大数据类型BigDecimal与Double"><a href="#大数据类型BigDecimal与Double" class="headerlink" title="大数据类型BigDecimal与Double"></a>大数据类型BigDecimal与Double</h3><p>我们知道在浮点类型做运算的时候存在损失精度的问题,这是因为计算机底层是以二进制的方式存储数据的,所以我们在和金钱打交道的时候就应该避免采用Double,而应该用大数据类型BigDecimal.</p>
+<h3 id="BigDecimal与Double的实验"><a href="#BigDecimal与Double的实验" class="headerlink" title="BigDecimal与Double的实验"></a>BigDecimal与Double的实验</h3><h4 id="分别采用两种方式计算两个小数的加法运算"><a href="#分别采用两种方式计算两个小数的加法运算" class="headerlink" title="分别采用两种方式计算两个小数的加法运算:"></a>分别采用两种方式计算两个小数的加法运算:</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">testNaN</span><span class="params">()</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> num1 = <span class="number">10</span>;</div><div class="line">  <span class="keyword">float</span> num2 = <span class="number">10.1F</span>;</div><div class="line">  <span class="keyword">double</span> num3 = <span class="number">10.2</span>;</div><div class="line"></div><div class="line">  BigDecimal add1 = BigDecimal.valueOf(<span class="number">10.1</span>).add(BigDecimal.valueOf(<span class="number">10.2</span>));</div><div class="line">  BigDecimal add2 = <span class="keyword">new</span> BigDecimal(<span class="string">"10.1"</span>).add(<span class="keyword">new</span> BigDecimal(<span class="string">"10.2"</span>));</div><div class="line">  BigDecimal add3 = BigDecimal.valueOf(num2).add(BigDecimal.valueOf(num3));</div><div class="line">  Double add4 = num3 + num2;</div><div class="line">  System.out.println(add1 + <span class="string">"****"</span> + add2 + <span class="string">"****"</span> + add3 + <span class="string">"****"</span> + add4);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">20.3</span>****<span class="number">20.3</span>****<span class="number">20.300000381469727</span>****<span class="number">20.300000381469726</span></div></pre></td></tr></table></figure>
+<h4 id="得出结论"><a href="#得出结论" class="headerlink" title="得出结论"></a>得出结论</h4><p>浮点型的运算会存在误差问题,所以我们需要进行小数精确运算的时候应该采用BigDecimal,BigDecimal实现了任意精度的浮点型运算,保证了运算的正确性</p>
+<h4 id="使用心得"><a href="#使用心得" class="headerlink" title="使用心得"></a>使用心得</h4><p>我们在使用BigDecimal的时候应该采用构造方法,传入字符串的形式进行加减乘除计算</p>
+<h4 id="API的使用"><a href="#API的使用" class="headerlink" title="API的使用"></a>API的使用</h4><p><font color="blue">add(other) </font>— 和</p>
+<p><font color="blue">subtract(other) </font>— 差</p>
+<p><font color="blue">multiply(other)</font> — 积</p>
+<p><font color="blue">divid(other)</font> — 商</p>
+<p><font color="blue">mod(oher) </font>— 余</p>
+<p><font color="blue">int compareTo(other) </font>— 比较两个数,如果相等返回0,如果小于other返回负数,如多大于other返回正数</p>
+<p><font color="blue">valueOf(other)</font> — 将基数值转换为大数据类型</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;大数据类型BigDecimal与Double&quot;&gt;&lt;a href=&quot;#大数据类型BigDecimal与Double&quot; class=&quot;headerlink&quot; title=&quot;大数据类型BigDecimal与Double&quot;&gt;&lt;/a&gt;大数据类型BigDecimal与Doub
+    
+    </summary>
+    
+      <category term="javaSE" scheme="http://www.fireworm.online/categories/javaSE/"/>
+    
+    
+      <category term="BigDecimal数据类型" scheme="http://www.fireworm.online/tags/BigDecimal%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>List集合切割工具类</title>
+    <link href="http://www.fireworm.online/%E5%B7%A5%E5%85%B7%E7%B1%BB/2017/05/15/List%E9%9B%86%E5%90%88%E5%88%87%E5%89%B2%E5%B7%A5%E5%85%B7%E7%B1%BB.html"/>
+    <id>http://www.fireworm.online/工具类/2017/05/15/List集合切割工具类.html</id>
+    <published>2017-05-15T14:55:00.000Z</published>
+    <updated>2017-05-15T14:55:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h4><p>我们在处理List集合的时候难免会遇到集合的size比较大,这时候我们就需要将一个比较大的list集合拆分成几个size比较小的集合进型处理,这样操作主要是考虑到了性能的问题,所以以下的工具类是针对于一个大的List集合进行拆分的过程</p>
+<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 切割List集合,将其分成等分的</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> source</div><div class="line"> * <span class="doctag">@param</span> pageSize</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;T&gt; List&lt;List&lt;T&gt;&gt; splitList(List&lt;T&gt; source, Integer pageSize) &#123;</div><div class="line">  <span class="keyword">if</span> (<span class="keyword">null</span> == source || source.size() == <span class="number">0</span>) &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">int</span> size = source.size();</div><div class="line">  <span class="keyword">int</span> num = size / pageSize + <span class="number">1</span>;</div><div class="line"></div><div class="line">  <span class="comment">// 切割list集合</span></div><div class="line">  List&lt;List&lt;T&gt;&gt; target = <span class="keyword">new</span> ArrayList&lt;List&lt;T&gt;&gt;();</div><div class="line">  List&lt;T&gt; subList = <span class="keyword">null</span>;</div><div class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++) &#123;</div><div class="line">    <span class="keyword">int</span> from = i * pageSize;</div><div class="line">    <span class="comment">//如果不是最后一个集合</span></div><div class="line">    <span class="keyword">if</span> (i != num - <span class="number">1</span>) &#123;</div><div class="line">      subList = source.subList(from, from + pageSize);</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        subList = source.subList(from, from + size % pageSize);</div><div class="line">    &#125;</div><div class="line">    target.add(subList);</div><div class="line">  &#125;</div><div class="line">    <span class="keyword">return</span> target;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="代码理解"><a href="#代码理解" class="headerlink" title="代码理解"></a>代码理解</h4><ol>
+<li>num:表示大集合将要被切割的个数</li>
+<li>pageSize表示每个小集合的size</li>
+<li>subList = source.subList(from, from + pageSize):如果不是最后一个集合,我们需要切割from 到from + pageSize个</li>
+<li>subList = source.subList(from, from + size % pageSize): 如果切割刀最后一个集合的时候,我们需要从from切割到from + size的余数(size % pageSize)</li>
+</ol>
+<h4 id="功能测试"><a href="#功能测试" class="headerlink" title="功能测试"></a>功能测试</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</div><div class="line">    List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</div><div class="line">    list.add(<span class="number">1</span>);</div><div class="line">    list.add(<span class="number">2</span>);</div><div class="line">    list.add(<span class="number">3</span>);</div><div class="line">    list.add(<span class="number">4</span>);</div><div class="line">    list.add(<span class="number">5</span>);</div><div class="line">    list.add(<span class="number">5</span>);</div><div class="line">    list.add(<span class="number">6</span>);</div><div class="line"></div><div class="line">    List&lt;List&lt;Integer&gt;&gt; splitList = splitList(list, <span class="number">2</span>);</div><div class="line">    System.out.println(splitList);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h4 id="测试运行结果"><a href="#测试运行结果" class="headerlink" title="测试运行结果"></a>测试运行结果</h4><p>[[1, 2], [3, 4], [5, 5], [6]]</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;问题背景&quot;&gt;&lt;a href=&quot;#问题背景&quot; class=&quot;headerlink&quot; title=&quot;问题背景&quot;&gt;&lt;/a&gt;问题背景&lt;/h4&gt;&lt;p&gt;我们在处理List集合的时候难免会遇到集合的size比较大,这时候我们就需要将一个比较大的list集合拆分成几个size比较
+    
+    </summary>
+    
+      <category term="工具类" scheme="http://www.fireworm.online/categories/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
+    
+    
+      <category term="集合体系" scheme="http://www.fireworm.online/tags/%E9%9B%86%E5%90%88%E4%BD%93%E7%B3%BB/"/>
+    
+  </entry>
+  
+</feed>
