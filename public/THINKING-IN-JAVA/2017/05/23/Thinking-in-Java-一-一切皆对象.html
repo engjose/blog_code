@@ -194,7 +194,7 @@
 <li><font color="blue">非RAM存储器:</font>如果数据完全存储于代码之外,比如流对象和持久化对象最终会被存储在磁盘或者其他的地方,这样反序列化的时候就会再次找到</li>
 </ol>
 <h4 id="基本数据类型的存储"><a href="#基本数据类型的存储" class="headerlink" title="基本数据类型的存储"></a>基本数据类型的存储</h4><p>java中并不是所有的变量都是通过new来进行创建的,我们对于比较小的常用的数据类型不使用new关键字创建,而是创建一个并非引用的’自动’变量,将这个变量的值直接存储于<font color="red">堆栈中</font>,这样提高了数据存储额效率</p>
-<h5 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h5><p>java中基本数据类型的大小都是固定的,这也是java夸平台原因之一</p>
+<h4 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h4><p>java中基本数据类型的大小都是固定的,这也是java夸平台原因之一</p>
 <table>
 <thead>
 <tr>
@@ -234,11 +234,62 @@
 </tbody>
 </table>
 <p>所有的数值类型都具有正负号,不要去寻求无符号的数值类型,boolean占的大小没有指定,但是只能存储true/false</p>
-<h5 id="高精度数字"><a href="#高精度数字" class="headerlink" title="高精度数字"></a>高精度数字</h5><p>java提供了两种高精度的计算:BigInteger和BigDecimal,能用基本数据类型操作的都可以用包装类型进行操作,但是需要调用方法.这么做复杂了许多,当然运算速度也慢了许多,这里是利用速度换取了精度</p>
+<h4 id="高精度数字"><a href="#高精度数字" class="headerlink" title="高精度数字"></a>高精度数字</h4><p>java提供了两种高精度的计算:BigInteger和BigDecimal,能用基本数据类型操作的都可以用包装类型进行操作,但是需要调用方法.这么做复杂了许多,当然运算速度也慢了许多,这里是利用速度换取了精度</p>
 <ol>
 <li>BigInteger支持任意精度的整数运算</li>
 <li>BigDecimal支持任意精度的浮点型运算</li>
 </ol>
+<h4 id="类的描述"><a href="#类的描述" class="headerlink" title="类的描述"></a>类的描述</h4><p>我们知道java是面相对象的,并且知道用new关键字来创建对象.但是如何在开发中创建我们自定义类和对象的呢?<br>其实类由两部分组成:成员方法和成员变量,成员变量描述类所具备的属性,成员方法说明了该类具有哪些功能</p>
+<h4 id="成员变量定义"><a href="#成员变量定义" class="headerlink" title="成员变量定义"></a>成员变量定义</h4><p>我们在类中定义了成员变量默认都会初始化的,但是局部变量不会默认进行初始化,所以我们在使用局部变量之前一定先给其初始化才行,负责编译器就会报错.以下是我们成员变量的默认初始化:</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>char</td>
+<td>\u0000</td>
+</tr>
+<tr>
+<td>byte</td>
+<td>(byte)0</td>
+</tr>
+<tr>
+<td>short</td>
+<td>(short)0</td>
+</tr>
+<tr>
+<td>int</td>
+<td>0</td>
+</tr>
+<tr>
+<td>long</td>
+<td>0L</td>
+</tr>
+<tr>
+<td>float</td>
+<td>0.0F</td>
+</tr>
+<tr>
+<td>double</td>
+<td>0.0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="static关键字"><a href="#static关键字" class="headerlink" title="static关键字"></a>static关键字</h4><p>出现需求:</p>
+<ol>
+<li>为某个特定的区域分配单一存储空间,而不需要考虑需要多少个对象</li>
+<li>希望被static修饰的不与任何的对象所关联,只与当前的类相关</li>
+</ol>
+<p>下面这段代码无论有多少个StaticTest对象StaticTest.i只会有一份存储空间,N个对象共享一个i.<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">calss StaticTest &#123;</div><div class="line">  <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">47</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><font color="red">建议:</font>在静态使用中,建议使用类直接调用,而不建议使用创建对象的方式,因为这样表现层次更加的明确,说明静态是属于类的,而并非对象的.</p>
 
         </div>
         <footer class="article-footer">
