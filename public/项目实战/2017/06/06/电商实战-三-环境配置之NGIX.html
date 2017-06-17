@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>电商实战(三)---环境配置之NGINX | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="电商后台" />
+    
+    <meta name="description" content="NGINX简介与安装NGINX是什么Ngix是一个轻量级的WEB服务器,也是一个反向代理服务器,是俄罗斯人开发的. NGINX安装1.首先安装Nginx环境依赖gcc.打开终端查看机器是否已经安装gcc12[root@centos-linux ~]# gcc -vgcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) 如果没有安装的话,执行下面命令进">
+<meta name="keywords" content="电商后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商实战(三)---环境配置之NGINX">
+<meta property="og:url" content="http://www.fireworm.online/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="NGINX简介与安装NGINX是什么Ngix是一个轻量级的WEB服务器,也是一个反向代理服务器,是俄罗斯人开发的. NGINX安装1.首先安装Nginx环境依赖gcc.打开终端查看机器是否已经安装gcc12[root@centos-linux ~]# gcc -vgcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) 如果没有安装的话,执行下面命令进">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+<meta property="og:updated_time" content="2017-06-06T13:29:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商实战(三)---环境配置之NGINX">
+<meta name="twitter:description" content="NGINX简介与安装NGINX是什么Ngix是一个轻量级的WEB服务器,也是一个反向代理服务器,是俄罗斯人开发的. NGINX安装1.首先安装Nginx环境依赖gcc.打开终端查看机器是否已经安装gcc12[root@centos-linux ~]# gcc -vgcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC) 如果没有安装的话,执行下面命令进">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/项目实战/">项目实战</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-电商实战-三-环境配置之NGIX" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        电商实战(三)---环境配置之NGINX
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="article-date">
+            <time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/电商后台/">电商后台</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="NGINX简介与安装"><a href="#NGINX简介与安装" class="headerlink" title="NGINX简介与安装"></a>NGINX简介与安装</h3><h4 id="NGINX是什么"><a href="#NGINX是什么" class="headerlink" title="NGINX是什么"></a><font color="blue">NGINX是什么</font></h4><p>Ngix是一个轻量级的WEB服务器,也是一个反向代理服务器,是俄罗斯人开发的.</p>
+<h4 id="NGINX安装"><a href="#NGINX安装" class="headerlink" title="NGINX安装"></a><font color="blue">NGINX安装</font></h4><p>1.首先安装Nginx环境依赖gcc.打开终端查看机器是否已经安装gcc<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# gcc -v</div><div class="line">gcc version 4.4.7 20120313 (Red Hat 4.4.7-17) (GCC)</div></pre></td></tr></table></figure></p>
+<p>如果没有安装的话,执行下面命令进行安装:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum <span class="keyword">install</span> gcc</div></pre></td></tr></table></figure></p>
+<p>2.安装Nginx的依赖pcre<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# sudo yum install pcre pcre-devel</div></pre></td></tr></table></figure></p>
+<p>3.安装Nginx的依赖zlib<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# sudo yum install zlib zlib-devel</div></pre></td></tr></table></figure></p>
+<p>4.安装Nginx的依赖openssl<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# sudo yum install openssl openssl-devel</div></pre></td></tr></table></figure></p>
+<p>5.下载Nginx,这里采用的地址是:<a href="http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz" target="_blank" rel="external">http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz</a><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux developer]# wget http://learning.happymmall.com/nginx/linux-nginx-1.10.2.tar.gz</div><div class="line"></div><div class="line">-- 下载完成之后解压(这里的下载路径是/developer)</div><div class="line">[root@centos-linux developer]# tar -zxvf linux-nginx-1.10.2.tar.gz</div></pre></td></tr></table></figure></p>
+<p>6.配置文件的检查和编译安装<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-- 进入到解压后的Nginx文件目录进行文件检查</div><div class="line">[root@centos-linux nginx-1.10.2]# sudo ./configure</div><div class="line">-- 检查完成之后输入sudo make命令进行编译</div><div class="line">[root@centos-linux nginx-1.10.2]# sudo make</div><div class="line">-- 编译完成之后进行安装</div><div class="line">[root@centos-linux nginx-1.10.2]# sudo make install</div><div class="line"></div><div class="line">-- 安装完成之后查看安装的目录</div><div class="line">[root@centos-linux nginx-1.10.2]# whereis nginx</div><div class="line">nginx: /usr/local/nginx</div></pre></td></tr></table></figure></p>
+<p>7.启动Nginx<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">-- 进入到Nginx的安装目录下面的/sbin目录</div><div class="line">[root@centos-linux nginx-1.10.2]# cd /usr/local/nginx/</div><div class="line">[root@centos-linux nginx]# ll</div><div class="line">total 16</div><div class="line">drwxr-xr-x. 2 root root 4096 Jun 10 15:12 conf</div><div class="line">drwxr-xr-x. 2 root root 4096 Jun 10 15:12 html</div><div class="line">drwxr-xr-x. 2 root root 4096 Jun 10 15:12 logs</div><div class="line">drwxr-xr-x. 2 root root 4096 Jun 10 15:12 sbin</div><div class="line">[root@centos-linux nginx]# cd sbin/</div><div class="line"></div><div class="line">-- 启动Nginx</div><div class="line">[root@centos-linux sbin]# ./nginx</div><div class="line"></div><div class="line">-- 查看Nginx所运行的进程</div><div class="line">[root@centos-linux sbin]# ps aux| grep nginx </div><div class="line">root     17481  0.0  0.0  23968   824 ?        Ss   15:16   0:00 nginx: master process ./nginx</div><div class="line">nobody   17482  0.0  0.1  24388  1404 ?        S    15:16   0:00 nginx: worker process</div><div class="line">root     17605  0.0  0.0 103312   880 pts/2    S+   15:16   0:00 grep nginx</div></pre></td></tr></table></figure></p>
+<p>8.安装验证,因为Nginx默认是80端口,所以这里关闭防火墙直接访问ip即可<br><img src="http://oayt7zau6.bkt.clouddn.com/Nginx%E5%AE%89%E8%A3%85.jpg" alt="enter image description here"></p>
+<h3 id="NGINX配置"><a href="#NGINX配置" class="headerlink" title="NGINX配置"></a>NGINX配置</h3><h4 id="NGINX配置服务转发"><a href="#NGINX配置服务转发" class="headerlink" title="NGINX配置服务转发"></a><font color="blue">NGINX配置服务转发</font></h4><p>1.进入到Nginx的安装目录的conf目录下,并创建vhost文件夹(方便管理)<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# cd /usr/local/nginx/conf/</div></pre></td></tr></table></figure></p>
+<p>2.编辑nginx.conf文件添加如下配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux conf]# vim nginx.conf</div><div class="line"></div><div class="line">-- 添加如下配置,在HHTPS的上面配置</div><div class="line">include vhost/*.conf;</div><div class="line"># HTTPS server</div></pre></td></tr></table></figure></p>
+<p>3.如果没有外网只在本机器局域网访问的话配置本机的host文件(不是linux)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro% sudo vim hosts</div><div class="line"><span class="comment">-- 添加如下的配置,将本机的ip和域名进行绑定</span></div><div class="line">10.211.55.3 www.learning.com</div></pre></td></tr></table></figure></p>
+<p>4.在nignx安装目录下的conf目录下创建vhost目录,并创建域名.conf进行配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux sbin]# cd /usr/local/nginx/conf/vhost/</div><div class="line">[root@centos-linux vhost]# vim www.learning.com.conf</div><div class="line">server &#123;</div><div class="line">    listen 80;</div><div class="line">    autoindex on;</div><div class="line">    server_name www.learning.com;</div><div class="line">    access_log /usr/local/nginx/logs/access.log combined;</div><div class="line">    index index.html index.htm index.jsp index.php;</div><div class="line">    if ( $query_string ~* ".*[\;'\&lt;\&gt;].*" )&#123;</div><div class="line">        return 404;</div><div class="line">    &#125;</div><div class="line">    location / &#123;</div><div class="line">       proxy_pass http://127.0.0.1:8080;</div><div class="line">       add_header Access-Control-Allow-Origin *;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>5.配置完成之后重启Nginx服务器<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">-- 进入到Nginx的安装目录下的sbin下执行命令</div><div class="line">[root@centos-linux vhost]#/usr/local/nginx/sbin</div><div class="line">[root@centos-linux sbin]# ./nginx -s reload -- 重启Nginx</div></pre></td></tr></table></figure></p>
+<p>6.启动测试<br>打开本机浏览器(修改hosts文件的机器)访问www.learning.com,发下已经被转发<br><img src="http://oayt7zau6.bkt.clouddn.com/nginx%E6%B5%8B%E8%AF%95.jpg" alt="enter image description here"></p>
+<h4 id="NGINX配置目录转发"><a href="#NGINX配置目录转发" class="headerlink" title="NGINX配置目录转发"></a><font color="blue">NGINX配置目录转发</font></h4><p>1.因为在本机局域网环境测试,所以这里要配置本机的hosts文件(不是linux)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">10.211.55.3 www.learning.com</div><div class="line">10.211.55.3 www.learning.image.com <span class="comment">-- 新添加的图片的地址</span></div></pre></td></tr></table></figure></p>
+<p>2.配置linux的Nginx反向代理配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">-- 找到nginx安装目录下的conf下的vhost文件夹</div><div class="line">[root@centos-linux sbin]# cd /usr/local/nginx/conf/vhost/</div><div class="line">-- 创建文件</div><div class="line">[root@centos-linux sbin]#vim www.learning.image.com.conf</div><div class="line">-- 编辑www.learning.image.com.conf文件</div><div class="line">server &#123;</div><div class="line">    listen 80;</div><div class="line">    autoindex off;</div><div class="line">    server_name www.learning.image.com;</div><div class="line">    access_log /usr/local/nginx/logs/access.log combined;</div><div class="line">    index index.html index.htm index.jsp index.php;</div><div class="line">    if ( $query_string ~* ".*[\;'\&lt;\&gt;].*" )&#123;</div><div class="line">        return 404;</div><div class="line">    &#125;</div><div class="line">    location / &#123;</div><div class="line">       root /ftpfile/image/; -- 路径指向FTP文件下的image文件夹</div><div class="line">       add_header Access-Control-Allow-Origin *;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3.在FTP的文件夹下创建image文件夹,并上传图片1.jpg<br><img src="http://oayt7zau6.bkt.clouddn.com/ftp%E6%96%87%E4%BB%B6%E5%A4%B9.jpg" alt="enter image description here"><br>4.重启Nginx服务器<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux sbin]# cd /usr/local/nginx/sbin</div><div class="line">[root@centos-linux sbin]# ./nginx -s reload</div></pre></td></tr></table></figure></p>
+<p>5.访问测试,在本机(修改hosts文件的机器)访问www.learning.image.com/1.jpg<br><img src="http://oayt7zau6.bkt.clouddn.com/nginx_test.jpg" alt="enter image description here"><br>到这里Nginx的安装和配置已经完成,并且与之前的vsftpd服务器已经形成了一个文件服务器,接下来下一章节我们安装Mysql和git</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" data-id="cj3sqntzk00138vfimqtg3owm" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            电商实战(四)---环境配置之Mysql|Git
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">电商实战(二)---环境配置之VSFTP</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

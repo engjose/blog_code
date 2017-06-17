@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>电商实战(六)---项目初始化一 | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="电商后台" />
+    
+    <meta name="description" content="IDEA创建Maven项目 初始化git上面我们创建一个Maven项目之后接下来初始化git:1.创建README.md文件,在IDEA下打开终端输入:12shizhengyangdeMacBook-Pro:mmall panyuanyuan$ touch README.md-- 输入说明 2.创建.gitignore文件12345678910111213141516171819202122232">
+<meta name="keywords" content="电商后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商实战(六)---项目初始化一">
+<meta property="og:url" content="http://www.fireworm.online/项目实战/2017/06/06/电商实战-六-项目初始化.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="IDEA创建Maven项目 初始化git上面我们创建一个Maven项目之后接下来初始化git:1.创建README.md文件,在IDEA下打开终端输入:12shizhengyangdeMacBook-Pro:mmall panyuanyuan$ touch README.md-- 输入说明 2.创建.gitignore文件12345678910111213141516171819202122232">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+<meta property="og:updated_time" content="2017-06-06T13:29:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商实战(六)---项目初始化一">
+<meta name="twitter:description" content="IDEA创建Maven项目 初始化git上面我们创建一个Maven项目之后接下来初始化git:1.创建README.md文件,在IDEA下打开终端输入:12shizhengyangdeMacBook-Pro:mmall panyuanyuan$ touch README.md-- 输入说明 2.创建.gitignore文件12345678910111213141516171819202122232">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/项目实战/">项目实战</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-电商实战-六-项目初始化" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        电商实战(六)---项目初始化一
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="article-date">
+            <time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/电商后台/">电商后台</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h1 id="IDEA创建Maven项目"><a href="#IDEA创建Maven项目" class="headerlink" title="IDEA创建Maven项目"></a>IDEA创建Maven项目</h1><p><img src="http://oayt7zau6.bkt.clouddn.com/maven_idea.jpg" alt="enter image description here"></p>
+<h3 id="初始化git"><a href="#初始化git" class="headerlink" title="初始化git"></a><font color="blue">初始化git</font></h3><p>上面我们创建一个Maven项目之后接下来初始化git:<br>1.创建README.md文件,在IDEA下打开终端输入:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ touch README.md</div><div class="line"><span class="comment">-- 输入说明</span></div></pre></td></tr></table></figure></p>
+<p>2.创建.gitignore文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ touch .gitignore</div><div class="line"></div><div class="line">-- 内容如下</div><div class="line">*.class</div><div class="line"></div><div class="line"># package file</div><div class="line">*.war</div><div class="line">*.ear</div><div class="line"></div><div class="line"># kdiff3 ignore</div><div class="line">*.orig</div><div class="line"></div><div class="line">#maven ignoer</div><div class="line">target/</div><div class="line"></div><div class="line"># eclipse ignore</div><div class="line">.settings/</div><div class="line">.project</div><div class="line">.classpath</div><div class="line"></div><div class="line"># idea ignore</div><div class="line">.idea/</div><div class="line">/idea/</div><div class="line">*.ipr</div><div class="line">*.iml</div><div class="line">*.iws</div><div class="line"></div><div class="line"># temp ignore</div><div class="line">*.log</div><div class="line">*.cache</div><div class="line">*.diff</div><div class="line">*.patch</div><div class="line">*.tmp</div><div class="line"></div><div class="line"># system ignore</div><div class="line">.DS_Store</div><div class="line">Thumbs.db</div></pre></td></tr></table></figure></p>
+<p>3.初始化git项目<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git init</div><div class="line">Initialized empty Git repository in /Users/panyuanyuan/java/note/code_project/new/mmall/.git/</div></pre></td></tr></table></figure></p>
+<p>4.提交项目<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 添加项目</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git add .</div><div class="line"></div><div class="line"><span class="comment">-- 提交到本地</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git <span class="keyword">commit</span> -am <span class="string">'first init project'</span></div><div class="line"></div><div class="line"><span class="comment">-- 添加远端仓库(保证远端有本地的公钥)</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git remote <span class="keyword">add</span> origin git@git.oschina.net:jose_uncle/mmall_learning.git</div><div class="line"></div><div class="line"><span class="comment">-- 拉取代码</span></div><div class="line">git pull</div><div class="line"></div><div class="line"><span class="comment">-- 提交到远端服务器</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git push -u -f origin <span class="keyword">master</span></div></pre></td></tr></table></figure></p>
+<p>5.查看是否推送成功<br><img src="http://oayt7zau6.bkt.clouddn.com/git_push.jpg" alt="enter image description here"><br>6.查看本地分支和远程分支<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git branch</div><div class="line">* master</div></pre></td></tr></table></figure></p>
+<p>7.查看远端分支<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git branch -r</div><div class="line">  origin/master</div></pre></td></tr></table></figure></p>
+<p>8.创建分支并切换分支<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 创建分支并切换</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git checkout -b v1.0 origin/master</div><div class="line">Branch v1.0 <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch <span class="keyword">master</span> <span class="keyword">from</span> origin.</div><div class="line">Switched <span class="keyword">to</span> a <span class="keyword">new</span> branch <span class="string">'v1.0'</span></div><div class="line"></div><div class="line"><span class="comment">-- 查看当前分支</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git branch</div><div class="line">  <span class="keyword">master</span></div><div class="line">* v1<span class="number">.0</span></div><div class="line"></div><div class="line"><span class="comment">-- 将当前分支推送到服务器</span></div><div class="line">shizhengyangdeMacBook-Pro:mmall panyuanyuan$ git push origin <span class="keyword">HEAD</span> -u</div><div class="line">Total <span class="number">0</span> (delta <span class="number">0</span>), reused <span class="number">0</span> (delta <span class="number">0</span>)</div><div class="line"><span class="keyword">To</span> git.oschina.net:jose_uncle/mmall_learning.git</div><div class="line"> * [<span class="keyword">new</span> branch]      <span class="keyword">HEAD</span> -&gt; v1<span class="number">.0</span></div><div class="line">Branch v1<span class="number">.0</span> <span class="keyword">set</span> up <span class="keyword">to</span> track remote branch v1<span class="number">.0</span> <span class="keyword">from</span> origin.</div></pre></td></tr></table></figure></p>
+<h3 id="修改POM文件"><a href="#修改POM文件" class="headerlink" title="修改POM文件"></a><font color="blue">修改POM文件</font></h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div><div class="line">174</div><div class="line">175</div><div class="line">176</div><div class="line">177</div><div class="line">178</div><div class="line">179</div><div class="line">180</div><div class="line">181</div><div class="line">182</div><div class="line">183</div><div class="line">184</div><div class="line">185</div><div class="line">186</div><div class="line">187</div><div class="line">188</div><div class="line">189</div><div class="line">190</div><div class="line">191</div><div class="line">192</div><div class="line">193</div><div class="line">194</div><div class="line">195</div><div class="line">196</div><div class="line">197</div><div class="line">198</div><div class="line">199</div><div class="line">200</div><div class="line">201</div><div class="line">202</div><div class="line">203</div><div class="line">204</div><div class="line">205</div><div class="line">206</div><div class="line">207</div><div class="line">208</div><div class="line">209</div><div class="line">210</div><div class="line">211</div><div class="line">212</div><div class="line">213</div><div class="line">214</div><div class="line">215</div><div class="line">216</div><div class="line">217</div><div class="line">218</div><div class="line">219</div><div class="line">220</div><div class="line">221</div><div class="line">222</div><div class="line">223</div><div class="line">224</div><div class="line">225</div><div class="line">226</div><div class="line">227</div><div class="line">228</div><div class="line">229</div><div class="line">230</div><div class="line">231</div><div class="line">232</div><div class="line">233</div><div class="line">234</div><div class="line">235</div><div class="line">236</div><div class="line">237</div><div class="line">238</div><div class="line">239</div><div class="line">240</div><div class="line">241</div><div class="line">242</div><div class="line">243</div><div class="line">244</div><div class="line">245</div><div class="line">246</div><div class="line">247</div><div class="line">248</div><div class="line">249</div><div class="line">250</div><div class="line">251</div><div class="line">252</div><div class="line">253</div><div class="line">254</div><div class="line">255</div><div class="line">256</div><div class="line">257</div><div class="line">258</div><div class="line">259</div><div class="line">260</div><div class="line">261</div><div class="line">262</div><div class="line">263</div><div class="line">264</div><div class="line">265</div><div class="line">266</div><div class="line">267</div><div class="line">268</div><div class="line">269</div><div class="line">270</div><div class="line">271</div><div class="line">272</div><div class="line">273</div><div class="line">274</div><div class="line">275</div><div class="line">276</div><div class="line">277</div><div class="line">278</div><div class="line">279</div><div class="line">280</div><div class="line">281</div></pre></td><td class="code"><pre><div class="line">&lt;project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"</div><div class="line">  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"&gt;</div><div class="line">  &lt;modelVersion&gt;4.0.0&lt;/modelVersion&gt;</div><div class="line">  &lt;groupId&gt;com&lt;/groupId&gt;</div><div class="line">  &lt;artifactId&gt;mmall&lt;/artifactId&gt;</div><div class="line">  &lt;packaging&gt;war&lt;/packaging&gt;</div><div class="line">  &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;</div><div class="line">  &lt;name&gt;mmall Maven Webapp&lt;/name&gt;</div><div class="line">  &lt;url&gt;http://maven.apache.org&lt;/url&gt;</div><div class="line"></div><div class="line">  &lt;properties&gt;</div><div class="line">    &lt;project.build.sourceEncoding&gt;UTF-8&lt;/project.build.sourceEncoding&gt;</div><div class="line">    &lt;project.reporting.outputEncoding&gt;UTF-8&lt;/project.reporting.outputEncoding&gt;</div><div class="line">    &lt;maven.compiler.encoding&gt;UTF-8&lt;/maven.compiler.encoding&gt;</div><div class="line"></div><div class="line">    &lt;org.springframework.version&gt;4.0.0.RELEASE&lt;/org.springframework.version&gt;</div><div class="line">    &lt;org.mybatis.version&gt;3.4.1&lt;/org.mybatis.version&gt;</div><div class="line">    &lt;org.mybatis.spring.version&gt;1.3.0&lt;/org.mybatis.spring.version&gt;</div><div class="line">  &lt;/properties&gt;</div><div class="line"></div><div class="line">  &lt;dependencies&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.apache.tomcat&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;tomcat-servlet-api&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;7.0.64&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;spring-webmvc&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.springframework.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;spring-oxm&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.springframework.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;spring-jdbc&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.springframework.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;spring-tx&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.springframework.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.springframework&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;spring-test&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.springframework.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;aspectjweaver&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.7.3&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.mybatis.spring.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.mybatis&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;mybatis&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;$&#123;org.mybatis.version&#125;&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.aspectj&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;aspectjrt&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.6.11&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;jackson-mapper-asl&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.9.12&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-dbcp&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-dbcp&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.4&lt;/version&gt;</div><div class="line">      &lt;!--&lt;scope&gt;runtime&lt;/scope&gt;--&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.1.2&lt;/version&gt;</div><div class="line">      &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;logback-core&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.1.2&lt;/version&gt;</div><div class="line">      &lt;scope&gt;compile&lt;/scope&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;mysql&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;mysql-connector-java&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;5.1.6&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;com.google.guava&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;guava&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;20.0&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.apache.commons&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-lang3&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;3.5&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-collections&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-collections&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;3.2.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;junit&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;junit&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;4.12&lt;/version&gt;</div><div class="line">      &lt;!--&lt;scope&gt;test&lt;/scope&gt;--&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;joda-time&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;joda-time&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.3&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- id加密解密 --&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.hashids&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;hashids&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.0.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- ftpclient --&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-net&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-net&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;3.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;!-- file upload --&gt;</div><div class="line"></div><div class="line">    &lt;!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload --&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-fileupload&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-fileupload&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.2.2&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-io&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-io&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.0.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- mybatis pager --&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;pagehelper&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;4.1.0&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;com.github.miemiedev&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;mybatis-paginator&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.2.17&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;com.github.jsqlparser&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;jsqlparser&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;0.9.4&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- alipay --&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-codec&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-codec&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.10&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-configuration&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-configuration&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.10&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-lang&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-lang&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.6&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;commons-logging&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;commons-logging&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.1.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;com.google.zxing&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;core&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;com.google.code.gson&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;gson&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.3.1&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;org.hamcrest&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;hamcrest-core&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;1.3&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line"></div><div class="line">    &lt;dependency&gt;</div><div class="line">      &lt;groupId&gt;redis.clients&lt;/groupId&gt;</div><div class="line">      &lt;artifactId&gt;jedis&lt;/artifactId&gt;</div><div class="line">      &lt;version&gt;2.9.0&lt;/version&gt;</div><div class="line">    &lt;/dependency&gt;</div><div class="line">  &lt;/dependencies&gt;</div><div class="line"></div><div class="line"></div><div class="line">  &lt;build&gt;</div><div class="line">    &lt;finalName&gt;mmall&lt;/finalName&gt;</div><div class="line">    &lt;plugins&gt;</div><div class="line">      &lt;plugin&gt;</div><div class="line">        &lt;groupId&gt;org.mybatis.generator&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;mybatis-generator-maven-plugin&lt;/artifactId&gt;</div><div class="line">        &lt;version&gt;1.3.2&lt;/version&gt;</div><div class="line">        &lt;configuration&gt;</div><div class="line">          &lt;verbose&gt;true&lt;/verbose&gt;</div><div class="line">          &lt;overwrite&gt;true&lt;/overwrite&gt;</div><div class="line">        &lt;/configuration&gt;</div><div class="line">      &lt;/plugin&gt;</div><div class="line"></div><div class="line">      &lt;!-- geelynote maven的核心插件之-complier插件默认只支持编译Java 1.4，因此需要加上支持高版本jre的配置，在pom.xml里面加上 增加编译插件 --&gt;</div><div class="line">      &lt;plugin&gt;</div><div class="line">        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;</div><div class="line">        &lt;artifactId&gt;maven-compiler-plugin&lt;/artifactId&gt;</div><div class="line">        &lt;configuration&gt;</div><div class="line">          &lt;source&gt;1.7&lt;/source&gt;</div><div class="line">          &lt;target&gt;1.7&lt;/target&gt;</div><div class="line">          &lt;encoding&gt;UTF-8&lt;/encoding&gt;</div><div class="line">          &lt;compilerArguments&gt;</div><div class="line">            &lt;extdirs&gt;$&#123;project.basedir&#125;/src/main/webapp/WEB-INF/lib&lt;/extdirs&gt;</div><div class="line">          &lt;/compilerArguments&gt;</div><div class="line">        &lt;/configuration&gt;</div><div class="line">      &lt;/plugin&gt;</div><div class="line">    &lt;/plugins&gt;</div><div class="line"></div><div class="line">  &lt;/build&gt;</div><div class="line"></div><div class="line"></div><div class="line">&lt;/project&gt;</div></pre></td></tr></table></figure>
+<h3 id="配置Mybatis的generator自动生成器"><a href="#配置Mybatis的generator自动生成器" class="headerlink" title="配置Mybatis的generator自动生成器"></a><font color="blue">配置Mybatis的generator自动生成器</font></h3><p>1.在resource资源文件夹路径下创建datasource.properties,内容如下:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">db.driverLocation=/Users/panyuanyuan/java/note/code_project/new/mysql-connector-java-5.1.6-bin.jar</div><div class="line">db.driverClassName=com.mysql.jdbc.Driver</div><div class="line">db.url=jdbc:mysql://10.211.55.3:3306/mmall_learning?characterEncoding=utf-8</div><div class="line">db.username=panyuanyuan</div><div class="line">db.password=xxx</div></pre></td></tr></table></figure></p>
+<p>2.在resource资源文件夹路径下创建generatorConfig.xml文件,配置如下:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</div><div class="line">&lt;!DOCTYPE generatorConfiguration</div><div class="line">  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"</div><div class="line">  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd"&gt;</div><div class="line"></div><div class="line">&lt;generatorConfiguration&gt;</div><div class="line">  &lt;!--导入属性配置--&gt;</div><div class="line">  &lt;properties resource="datasource.properties"&gt;&lt;/properties&gt;</div><div class="line"></div><div class="line">  &lt;!--指定特定数据库的jdbc驱动jar包的位置--&gt;</div><div class="line">  &lt;classPathEntry location="$&#123;db.driverLocation&#125;"/&gt;</div><div class="line"></div><div class="line">  &lt;context id="default" targetRuntime="MyBatis3"&gt;</div><div class="line"></div><div class="line">    &lt;!-- optional，旨在创建class时，对注释进行控制 --&gt;</div><div class="line">    &lt;commentGenerator&gt;</div><div class="line">      &lt;property name="suppressDate" value="true"/&gt;</div><div class="line">      &lt;property name="suppressAllComments" value="true"/&gt;</div><div class="line">    &lt;/commentGenerator&gt;</div><div class="line"></div><div class="line">    &lt;!--jdbc的数据库连接 --&gt;</div><div class="line">    &lt;jdbcConnection</div><div class="line">      driverClass="$&#123;db.driverClassName&#125;"</div><div class="line">      connectionURL="$&#123;db.url&#125;"</div><div class="line">      userId="$&#123;db.username&#125;"</div><div class="line">      password="$&#123;db.password&#125;"&gt;</div><div class="line">    &lt;/jdbcConnection&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- 非必需，类型处理器，在数据库类型和java类型之间的转换控制--&gt;</div><div class="line">    &lt;javaTypeResolver&gt;</div><div class="line">      &lt;property name="forceBigDecimals" value="false"/&gt;</div><div class="line">    &lt;/javaTypeResolver&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- Model模型生成器,用来生成含有主键key的类，记录类 以及查询Example类</div><div class="line">        targetPackage     指定生成的model生成所在的包名</div><div class="line">        targetProject     指定在该项目下所在的路径</div><div class="line">    --&gt;</div><div class="line">    &lt;!--&lt;javaModelGenerator targetPackage="com.mmall.pojo" targetProject=".\src\main\java"&gt;--&gt;</div><div class="line">    &lt;javaModelGenerator targetPackage="com.mmall.pojo" targetProject="./src/main/java"&gt;</div><div class="line">      &lt;!-- 是否允许子包，即targetPackage.schemaName.tableName --&gt;</div><div class="line">      &lt;property name="enableSubPackages" value="false"/&gt;</div><div class="line">      &lt;!-- 是否对model添加 构造函数 --&gt;</div><div class="line">      &lt;property name="constructorBased" value="true"/&gt;</div><div class="line">      &lt;!-- 是否对类CHAR类型的列的数据进行trim操作 --&gt;</div><div class="line">      &lt;property name="trimStrings" value="true"/&gt;</div><div class="line">      &lt;!-- 建立的Model对象是否 不可改变  即生成的Model对象不会有 setter方法，只有构造方法 --&gt;</div><div class="line">      &lt;property name="immutable" value="false"/&gt;</div><div class="line">    &lt;/javaModelGenerator&gt;</div><div class="line"></div><div class="line">    &lt;!--mapper映射文件生成所在的目录 为每一个数据库的表生成对应的SqlMap文件 --&gt;</div><div class="line">    &lt;!--&lt;sqlMapGenerator targetPackage="mappers" targetProject=".\src\main\resources"&gt;--&gt;</div><div class="line">    &lt;sqlMapGenerator targetPackage="mappers" targetProject="./src/main/resources"&gt;</div><div class="line">      &lt;property name="enableSubPackages" value="false"/&gt;</div><div class="line">    &lt;/sqlMapGenerator&gt;</div><div class="line"></div><div class="line">    &lt;!-- 客户端代码，生成易于使用的针对Model对象和XML配置文件 的代码</div><div class="line">            type="ANNOTATEDMAPPER",生成Java Model 和基于注解的Mapper对象</div><div class="line">            type="MIXEDMAPPER",生成基于注解的Java Model 和相应的Mapper对象</div><div class="line">            type="XMLMAPPER",生成SQLMap XML文件和独立的Mapper接口</div><div class="line">    --&gt;</div><div class="line"></div><div class="line">    &lt;!-- targetPackage：mapper接口dao生成的位置 --&gt;</div><div class="line">    &lt;!--&lt;javaClientGenerator type="XMLMAPPER" targetPackage="com.mmall.dao" targetProject=".\src\main\java"&gt;--&gt;</div><div class="line">    &lt;javaClientGenerator type="XMLMAPPER" targetPackage="com.mmall.dao" targetProject="./src/main/java"&gt;</div><div class="line">      &lt;!-- enableSubPackages:是否让schema作为包的后缀 --&gt;</div><div class="line">      &lt;property name="enableSubPackages" value="false" /&gt;</div><div class="line">    &lt;/javaClientGenerator&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;table tableName="mmall_shipping" domainObjectName="Shipping" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_cart" domainObjectName="Cart" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_cart_item" domainObjectName="CartItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_category" domainObjectName="Category" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_order" domainObjectName="Order" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_order_item" domainObjectName="OrderItem" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_pay_info" domainObjectName="PayInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_product" domainObjectName="Product" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;</div><div class="line">      &lt;columnOverride column="detail" jdbcType="VARCHAR" /&gt;</div><div class="line">      &lt;columnOverride column="sub_images" jdbcType="VARCHAR" /&gt;</div><div class="line">    &lt;/table&gt;</div><div class="line">    &lt;table tableName="mmall_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"&gt;&lt;/table&gt;</div><div class="line"></div><div class="line"></div><div class="line">    &lt;!-- geelynote mybatis插件的搭建 --&gt;</div><div class="line">  &lt;/context&gt;</div><div class="line">&lt;/generatorConfiguration&gt;</div></pre></td></tr></table></figure></p>
+<h3 id="运行插件自动生成代码"><a href="#运行插件自动生成代码" class="headerlink" title="运行插件自动生成代码"></a><font color="blue">运行插件自动生成代码</font></h3><p><img src="http://oayt7zau6.bkt.clouddn.com/mybatis_plugs.jpg" alt="enter image description here"></p>
+<h3 id="下载安装mybatis-plugins"><a href="#下载安装mybatis-plugins" class="headerlink" title="下载安装mybatis plugins"></a><font color="blue">下载安装mybatis plugins</font></h3><p>作用:dao接口和mapper的快捷跳转<br><img src="http://oayt7zau6.bkt.clouddn.com/mybatis_plugin.jpg" alt="enter image description here"><br>1.找到安装的所在路径<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro% find ~ -name "mybatis_plus.jar"</div><div class="line">/Users/panyuanyuan/Library/Application Support/IntelliJIdea2017.1/mybatis_plus/lib/mybatis_plus.jar</div></pre></td></tr></table></figure></p>
+<p>2.进入到路径<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /Users/XXXXX/Library/Application Support/IntelliJIdea15/mybatis_plus/lib</div></pre></td></tr></table></figure></p>
+<p>3.开始破解<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">-- 破解包地址,我们只需要替换com文件即可</div><div class="line">https://github.com/myoss/profile/tree/master/idea/plugin/MybatisPlugin</div><div class="line"></div><div class="line">-- 创建一个文件夹</div><div class="line">mkdir m</div><div class="line">-- 进去 </div><div class="line">cd m</div><div class="line">-- 拷贝到m文件夹中 </div><div class="line">cp ../mybatis_plus.jar .</div><div class="line">-- 解压jar包</div><div class="line">jar xf mybatis_plus.jar </div><div class="line">-- 复制com文件夹到这里   路径根据你情况而定，版本号也根据你情况而定</div><div class="line">cp -r ~/Workspace/github/mybatis_plus/idea/plugin/MybatisPlugin/v2.7\~v2.83/com .</div><div class="line">-- 重新打为jar包</div><div class="line">jar cf mybatis_plus.jar *</div><div class="line">-- 复制到m的上层目录</div><div class="line">cp mybatis_plus.jar ../</div></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/项目实战/2017/06/06/电商实战-六-项目初始化.html" data-id="cj3sqntzq00198vfim42szl1p" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            电商实战(五)---数据库设计
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">电商实战(四)---环境配置之Mysql|Git</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/项目实战/2017/06/06/电商实战-六-项目初始化.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

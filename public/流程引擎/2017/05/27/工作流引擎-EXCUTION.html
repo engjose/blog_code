@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>工作流引擎---EXCUTION | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="" />
+    
+    <meta name="description" content="EXCUTION其实就是流程启动后对应的一个实例,每一个流程对应一个,在一个独立的流程中process(excution)–ID是唯一的 启动流程实例当我们部署好了之后就需要来启动流程实例,当我们以key的方式启动时,默认的会启动最后一次的部署12String processDefinitionKey = &quot;helloActivitiProcess&quot;;ProcessInstance pi = pr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作流引擎---EXCUTION">
+<meta property="og:url" content="http://www.fireworm.online/流程引擎/2017/05/27/工作流引擎-EXCUTION.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="EXCUTION其实就是流程启动后对应的一个实例,每一个流程对应一个,在一个独立的流程中process(excution)–ID是唯一的 启动流程实例当我们部署好了之后就需要来启动流程实例,当我们以key的方式启动时,默认的会启动最后一次的部署12String processDefinitionKey = &quot;helloActivitiProcess&quot;;ProcessInstance pi = pr">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/basic.jpg">
+<meta property="og:updated_time" content="2017-05-27T06:59:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工作流引擎---EXCUTION">
+<meta name="twitter:description" content="EXCUTION其实就是流程启动后对应的一个实例,每一个流程对应一个,在一个独立的流程中process(excution)–ID是唯一的 启动流程实例当我们部署好了之后就需要来启动流程实例,当我们以key的方式启动时,默认的会启动最后一次的部署12String processDefinitionKey = &quot;helloActivitiProcess&quot;;ProcessInstance pi = pr">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/basic.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/流程引擎/">流程引擎</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-工作流引擎-EXCUTION" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        工作流引擎---EXCUTION
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/流程引擎/2017/05/27/工作流引擎-EXCUTION.html" class="article-date">
+            <time datetime="2017-05-27T06:59:30.000Z" itemprop="datePublished">2017-05-27</time>
+        </a>
+    </div>
+
+                
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>EXCUTION其实就是流程启动后对应的一个实例,每一个流程对应一个,在一个独立的流程中process(excution)–ID是唯一的</p>
+<h3 id="启动流程实例"><a href="#启动流程实例" class="headerlink" title="启动流程实例"></a>启动流程实例</h3><p>当我们部署好了之后就需要来启动流程实例,当我们以key的方式启动时,默认的会启动最后一次的部署<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String processDefinitionKey = <span class="string">"helloActivitiProcess"</span>;</div><div class="line">ProcessInstance pi = processEngine.getRuntimeService().startProcessInstanceByKey(processDefinitionKey);</div></pre></td></tr></table></figure></p>
+<h3 id="获取流程图-并高亮节点"><a href="#获取流程图-并高亮节点" class="headerlink" title="获取流程图,并高亮节点"></a>获取流程图,并高亮节点</h3><p>当我们流程启动并在运行的节点中,这时候为了全局的观测流程运行的进度,就需要以流程图片的方式展现,并且当前节点需要高亮.Controller层实现:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取流程框图</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> processInstanceId</div><div class="line"> * <span class="doctag">@param</span> response</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/&#123;processInstanceId&#125;/diagram"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getProcessDiagram</span><span class="params">(@PathVariable String processInstanceId, HttpServletResponse response)</span> </span>&#123;</div><div class="line">    Map&lt;String, Object&gt; processDiagram = processInstanceService.getProcessDiagram(processInstanceId);</div><div class="line">    <span class="keyword">if</span> (processDiagram != <span class="keyword">null</span> &amp;&amp; processDiagram.size() &gt; <span class="number">0</span>) &#123;</div><div class="line">        String pngName = <span class="string">"flowengine-"</span>+ processInstanceId +<span class="string">".png"</span>;</div><div class="line">        <span class="keyword">if</span> (StringUtils.isNotBlank((String) processDiagram.get(<span class="string">"pngName"</span>))) &#123;</div><div class="line">            pngName = (String) processDiagram.get(<span class="string">"pngName"</span>);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span> (processDiagram.get(<span class="string">"pngStream"</span>) != <span class="keyword">null</span>) &#123;</div><div class="line">            processInstanceService.downFile((InputStream) processDiagram.get(<span class="string">"pngStream"</span>), pngName, response);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><font color="red">rocessInstanceService.getProcessDiagram(processInstanceId);</font>方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 获取流程状态图形化展示</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> processInstanceId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getProcessDiagram</span><span class="params">(String processInstanceId)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (StringUtils.isNotBlank(processInstanceId)) &#123;</div><div class="line">        Map&lt;String, Object&gt; result = <span class="keyword">new</span> HashMap&lt;String, Object&gt;();</div><div class="line">        TaskQuery query = taskService.createTaskQuery();</div><div class="line">        Task task = query.processInstanceId(processInstanceId).singleResult();</div><div class="line">        <span class="keyword">if</span> (task != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="comment">//获取下载文件名称</span></div><div class="line">            ProcessInstance instance = runtimeService.createProcessInstanceQuery()</div><div class="line">                    .processInstanceId(processInstanceId).singleResult();</div><div class="line">            ProcessDefinition definition = repositoryService.getProcessDefinition(instance.getProcessDefinitionId());</div><div class="line">            <span class="keyword">if</span> (definition != <span class="keyword">null</span>) &#123;</div><div class="line">                result.put(<span class="string">"pngName"</span>, definition.getDiagramResourceName());</div><div class="line">            &#125;</div><div class="line"></div><div class="line">            <span class="comment">// 获取活动节点</span></div><div class="line">            BpmnModel bpmnModel = repositoryService.getBpmnModel(task.getProcessDefinitionId());</div><div class="line">            List&lt;String&gt; activityIds = runtimeService.getActiveActivityIds(task.getExecutionId());</div><div class="line">            InputStream inputStream = processEngine.getProcessEngineConfiguration()</div><div class="line">                    .getProcessDiagramGenerator()</div><div class="line">                    .generateDiagram(bpmnModel, <span class="string">"png"</span>, activityIds, <span class="keyword">new</span> ArrayList(),</div><div class="line">                            processEngine.getProcessEngineConfiguration().getActivityFontName(),</div><div class="line">                            processEngine.getProcessEngineConfiguration().getLabelFontName(), <span class="keyword">null</span>, <span class="keyword">null</span>, <span class="number">1.0</span>);</div><div class="line">            result.put(<span class="string">"pngStream"</span>, inputStream);</div><div class="line">            <span class="keyword">return</span> result;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>下载图片方法:<font color="red">processInstanceService.downFile</font><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 下载png图片</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> pngStream</div><div class="line"> * <span class="doctag">@param</span> response</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">downFile</span><span class="params">(InputStream pngStream, String pngName, HttpServletResponse response)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (pngStream != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</div><div class="line">        BufferedInputStream bis = <span class="keyword">new</span> BufferedInputStream(pngStream);</div><div class="line">        OutputStream os = <span class="keyword">null</span>;</div><div class="line"></div><div class="line">        response.setContentType(<span class="string">"image/png"</span>);</div><div class="line">        response.addHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment;fileName="</span> + pngName);</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            os = response.getOutputStream();</div><div class="line">            <span class="keyword">int</span> i = bis.read(buffer);</div><div class="line">            <span class="keyword">while</span> (i != -<span class="number">1</span>) &#123;</div><div class="line">                os.write(buffer, <span class="number">0</span>, i);</div><div class="line">                i = bis.read(buffer);</div><div class="line">            &#125;</div><div class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">            logger.error(<span class="string">"output image error"</span>, e);</div><div class="line">        &#125; <span class="keyword">finally</span> &#123;</div><div class="line">            <span class="keyword">if</span> (os != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    os.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    logger.warn(<span class="string">"close stream resource failed "</span>, e);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">            <span class="keyword">if</span> (bis != <span class="keyword">null</span>) &#123;</div><div class="line">                <span class="keyword">try</span> &#123;</div><div class="line">                    bis.close();</div><div class="line">                &#125; <span class="keyword">catch</span> (IOException e) &#123;</div><div class="line">                    logger.warn(<span class="string">"close stream resource failed "</span>, e);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="根据条件查询流程实例"><a href="#根据条件查询流程实例" class="headerlink" title="根据条件查询流程实例"></a>根据条件查询流程实例</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询processIntances</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> queryRequest</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> List&lt;ProcessInstanceVo&gt; <span class="title">queryProcessInstances</span><span class="params">(ProcessInstanceQueryForm queryRequest)</span> </span>&#123;</div><div class="line">    ProcessInstanceQuery query = runtimeService.createProcessInstanceQuery();</div><div class="line"></div><div class="line">    <span class="keyword">if</span> (queryRequest.getProcessInstanceId() != <span class="keyword">null</span>) &#123;</div><div class="line">        query.processInstanceId(queryRequest.getProcessInstanceId());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (queryRequest.getProcessDefinitionKey() != <span class="keyword">null</span>) &#123;</div><div class="line">        query.processDefinitionKey(queryRequest.getProcessDefinitionKey());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (queryRequest.getProcessDefinitionId() != <span class="keyword">null</span>) &#123;</div><div class="line">        query.processDefinitionId(queryRequest.getProcessDefinitionId());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (queryRequest.getProcessBusinessKey() != <span class="keyword">null</span>) &#123;</div><div class="line">        query.processInstanceBusinessKey(queryRequest.getProcessBusinessKey());</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (queryRequest.getVariables() != <span class="keyword">null</span>) &#123;</div><div class="line">        addVariables(query, queryRequest.getVariables());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    List&lt;ProcessInstanceVo&gt; instanceList = <span class="keyword">new</span> ArrayList&lt;&gt;();</div><div class="line"></div><div class="line">    List&lt;ProcessInstance&gt; processInstances = query.list();</div><div class="line">    <span class="keyword">for</span> (ProcessInstance processInstance : processInstances) &#123;</div><div class="line">        ProcessInstanceVo processInstanceVo = <span class="keyword">new</span> ProcessInstanceVo();</div><div class="line"></div><div class="line">        processInstanceVo.setProcessInstanceId(processInstance.getProcessInstanceId());</div><div class="line">        processInstanceVo.setProcessDefinitionId(processInstance.getProcessDefinitionId());</div><div class="line">        processInstanceVo.setProcessDefinitionKey(processInstance.getProcessDefinitionKey());</div><div class="line">        processInstanceVo.setProcessBusinessKey(processInstance.getBusinessKey());</div><div class="line">        processInstanceVo.setVariables(processInstance.getProcessVariables());</div><div class="line"></div><div class="line">        instanceList.add(processInstanceVo);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> instanceList;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/流程引擎/2017/05/27/工作流引擎-EXCUTION.html" data-id="cj3sqntyx000h8vfi5o7g52la" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/流程引擎/2017/05/27/工作流引擎-TASK.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            工作流引擎---TASK
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/流程引擎/2017/05/27/工作流引擎-RE.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">工作流引擎---RE</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/流程引擎/2017/05/27/工作流引擎-EXCUTION.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

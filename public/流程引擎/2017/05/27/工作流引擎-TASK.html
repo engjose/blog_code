@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>工作流引擎---TASK | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="流程引擎" />
+    
+    <meta name="description" content="条件查询获取任务  name—根据事件名称模糊查询 status—根据事件状态查询 type根据事件类型查询  Controller层实现12345@RequestMapping(value = &quot;/auditTasks&quot;, method = RequestMethod.GET)public Map&amp;lt;String, Object&amp;gt; getAuditEvents(String name,">
+<meta name="keywords" content="流程引擎">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工作流引擎---TASK">
+<meta property="og:url" content="http://www.fireworm.online/流程引擎/2017/05/27/工作流引擎-TASK.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="条件查询获取任务  name—根据事件名称模糊查询 status—根据事件状态查询 type根据事件类型查询  Controller层实现12345@RequestMapping(value = &quot;/auditTasks&quot;, method = RequestMethod.GET)public Map&amp;lt;String, Object&amp;gt; getAuditEvents(String name,">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/basic.jpg">
+<meta property="og:updated_time" content="2017-05-27T07:35:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="工作流引擎---TASK">
+<meta name="twitter:description" content="条件查询获取任务  name—根据事件名称模糊查询 status—根据事件状态查询 type根据事件类型查询  Controller层实现12345@RequestMapping(value = &quot;/auditTasks&quot;, method = RequestMethod.GET)public Map&amp;lt;String, Object&amp;gt; getAuditEvents(String name,">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/basic.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/流程引擎/">流程引擎</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-工作流引擎-TASK" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        工作流引擎---TASK
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/流程引擎/2017/05/27/工作流引擎-TASK.html" class="article-date">
+            <time datetime="2017-05-27T07:35:59.000Z" itemprop="datePublished">2017-05-27</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/流程引擎/">流程引擎</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="条件查询获取任务"><a href="#条件查询获取任务" class="headerlink" title="条件查询获取任务"></a>条件查询获取任务</h3><p><img src="http://oayt7zau6.bkt.clouddn.com/%E6%88%91%E7%9A%84%E5%AE%A1%E6%A0%B8%E6%9D%A1%E4%BB%B6.jpg" alt="image description"></p>
+<ol>
+<li>name—根据事件名称模糊查询</li>
+<li>status—根据事件状态查询</li>
+<li>type根据事件类型查询</li>
+</ol>
+<p>Controller层实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/auditTasks"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getAuditEvents</span><span class="params">(String name, String status, String type,</span></span></div><div class="line">                                          @RequestParam(defaultValue = <span class="string">"1"</span>)<span class="keyword">int</span> pageNo, @<span class="title">RequestParam</span><span class="params">(defaultValue = <span class="string">"20"</span>)</span> <span class="keyword">int</span> pageSize) &#123;</div><div class="line">    <span class="keyword">return</span> taskService.getAuditEvents(name, status, type, pageNo, pageSize);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>查看我的待审核列表—这里分页为静态分页,有问题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line"> * 待审核列表</div><div class="line"> *</div><div class="line"> * @param name</div><div class="line"> * @param status</div><div class="line"> * @param type</div><div class="line"> */</div><div class="line">public Map&lt;String, Object&gt; getAuditEvents(String name, String status, String type, int pageNo, int pageSize) &#123;</div><div class="line">    Map&lt;String, Object&gt; map = Maps.newHashMap();</div><div class="line">    try &#123;</div><div class="line">        List&lt;String&gt; processIdLists = Lists.newArrayList();</div><div class="line">        List&lt;Map&lt;String, Object&gt;&gt; auditList = Lists.newArrayList();</div><div class="line">        Map&lt;String, String&gt; taskProcessIdMap = Maps.newLinkedHashMap();</div><div class="line"></div><div class="line">        //根据人查询人所在的组</div><div class="line">        String assignee = ParameterThreadLocal.getUid();</div><div class="line">        List&lt;Group&gt; groupList = identityService.createGroupQuery().groupMember(assignee).list();</div><div class="line">        List&lt;String&gt; groupIdList = Lists.newArrayList();</div><div class="line">        for (Group groupIds : groupList) &#123;</div><div class="line">            groupIdList.add(groupIds.getId());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //记录分页总数</div><div class="line">        TaskQuery taskQuery = taskService.createTaskQuery().taskCandidateGroupIn(groupIdList).orderByTaskCreateTime().desc();</div><div class="line"></div><div class="line">        //分页 listPage自带的方法不满足分页,需要手动拼成分页</div><div class="line">        List&lt;Task&gt; taskList = taskQuery.listPage((pageNo - 1) == 0 ? 0 : (pageNo - 1) * pageSize, pageSize);</div><div class="line">        if (taskList != null &amp;&amp; taskList.size() &gt; 0) &#123;</div><div class="line">            for (Task task : taskList) &#123;</div><div class="line">                processIdLists.add(task.getProcessInstanceId());</div><div class="line">                taskProcessIdMap.put(task.getProcessInstanceId(), task.getId());</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        if (processIdLists != null &amp;&amp; processIdLists.size() &gt; 0) &#123;</div><div class="line">            for (String processId : processIdLists) &#123;</div><div class="line">                ProcessInstanceQuery processQuery = runtimeService.createProcessInstanceQuery().processInstanceId(processId);</div><div class="line">                if (StringUtils.isNotBlank(name)) &#123; //模糊查询,需要手动添加 %</div><div class="line">                    processQuery.variableValueLikeIgnoreCase(&quot;name&quot;, &quot;%&quot; + name + &quot;%&quot;);</div><div class="line">                &#125;</div><div class="line">                // 目前全部为待审核状态,无需过滤</div><div class="line">//                    if (StringUtils.isNotBlank(status)) &#123;</div><div class="line">//                        processQuery.variableValueEqualsIgnoreCase(&quot;status&quot;, status);</div><div class="line">//                    &#125;</div><div class="line">                if (StringUtils.isNotBlank(type)) &#123;</div><div class="line">                    processQuery.variableValueEqualsIgnoreCase(&quot;type&quot;, type);</div><div class="line">                &#125;</div><div class="line"></div><div class="line">                List&lt;ProcessInstance&gt; processInstanceList = processQuery.list();</div><div class="line">                //封装返回数据</div><div class="line">                for (ProcessInstance processInstance : processInstanceList) &#123;</div><div class="line">                    Map&lt;String, Object&gt; maps = runtimeService.getVariables(processInstance.getId());</div><div class="line"></div><div class="line">                    Map&lt;String, Object&gt; resultMap = Maps.newLinkedHashMap();</div><div class="line">                    for (Map.Entry entry : maps.entrySet()) &#123;</div><div class="line">                        resultMap.put(String.valueOf(entry.getKey()), entry.getValue());</div><div class="line">                    &#125;</div><div class="line">                    resultMap.put(&quot;taskId&quot;, Integer.valueOf(taskProcessIdMap.get(processId)));</div><div class="line">                    //目前全部为待审核</div><div class="line">                    resultMap.put(&quot;status&quot;, ApprovalStatus.STATUS_APPROVING);</div><div class="line">                    auditList.add(resultMap);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        map.put(&quot;total&quot;, taskQuery.count());</div><div class="line">        map.put(&quot;data&quot;, auditList);</div><div class="line">    &#125; catch (Exception e) &#123;</div><div class="line">        logger.warn(&quot;Get audit events failed. error = &quot;, e);</div><div class="line">    &#125;</div><div class="line">    return map;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="获取已驳回任务"><a href="#获取已驳回任务" class="headerlink" title="获取已驳回任务"></a>获取已驳回任务</h3><p>Controller实现—权限控制,只有发起人才能看到自己驳回的任务<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/rejectTasks"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getRejectTasks</span><span class="params">(String eventName, String eventType, String processDefinitionKey)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> taskService.getRejectTasksByApplyer(eventName, eventType, processDefinitionKey);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Service实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 查询驳回任务</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> eventName</div><div class="line"> * <span class="doctag">@param</span> eventType</div><div class="line"> * <span class="doctag">@param</span> processDefinitionKey</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> Map&lt;String, Object&gt; <span class="title">getRejectTasksByApplyer</span><span class="params">(String eventName, String eventType, String</span></span></div><div class="line">        processDefinitionKey) &#123;</div><div class="line"></div><div class="line">    Map&lt;String, Object&gt; map = Maps.newHashMap();</div><div class="line">    List&lt;RejectTaskVo&gt; rejectTaskVoList = Lists.newArrayList();</div><div class="line">    String userId = ParameterThreadLocal.getUid();</div><div class="line"></div><div class="line">    <span class="comment">/* 获取所有发起者是登录人的流程 */</span></div><div class="line">    ProcessInstanceQuery processQuery = runtimeService.createProcessInstanceQuery().processDefinitionKey(processDefinitionKey)</div><div class="line">            .variableValueEqualsIgnoreCase(<span class="string">"starter"</span>, userId);</div><div class="line">    <span class="keyword">if</span> (!StringUtils.isEmpty(eventName)) &#123;</div><div class="line">        processQuery.variableValueLikeIgnoreCase(<span class="string">"name"</span>, <span class="string">"%"</span> + eventName + <span class="string">"%"</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (!StringUtils.isEmpty(eventType)) &#123;</div><div class="line">        processQuery.variableValueLikeIgnoreCase(<span class="string">"type"</span>, <span class="string">"%"</span> + eventType + <span class="string">"%"</span>);</div><div class="line">    &#125;</div><div class="line">    List&lt;ProcessInstance&gt; processInstanceList = processQuery.list();</div><div class="line"></div><div class="line">    <span class="keyword">for</span> (ProcessInstance processInstance : processInstanceList) &#123;</div><div class="line">        List&lt;Comment&gt; comments = taskService.getProcessInstanceComments(processInstance.getId());</div><div class="line">        <span class="keyword">if</span> (!comments.isEmpty() &amp;&amp; <span class="string">"reject"</span>.equals(comments.get(<span class="number">0</span>).getType())) &#123;</div><div class="line">            String currentTaskId = taskService.createTaskQuery().processInstanceId(processInstance.getId()).orderByTaskCreateTime().asc().listPage(<span class="number">0</span>, <span class="number">1</span>).get(<span class="number">0</span>).getId();</div><div class="line">            Comment comment = comments.get(comments.size() - <span class="number">1</span>);</div><div class="line">            Map variables = runtimeService.getVariables(processInstance.getId());</div><div class="line">            RejectTaskVo rejectTaskVo = <span class="keyword">new</span> RejectTaskVo();</div><div class="line">            rejectTaskVo.setEventId(Integer.valueOf((String) variables.get(<span class="string">"id"</span>)));</div><div class="line">            rejectTaskVo.setEventName((String) variables.get(<span class="string">"name"</span>));</div><div class="line">            rejectTaskVo.setEventType((String) variables.get(<span class="string">"type"</span>));</div><div class="line">            rejectTaskVo.setCurrentTaskId(currentTaskId);</div><div class="line">            rejectTaskVo.setRejectPerson(comment.getUserId());</div><div class="line">            rejectTaskVo.setRejectTaskId(comment.getTaskId());</div><div class="line">            rejectTaskVo.setRejectTime(comment.getTime());</div><div class="line">            rejectTaskVo.setVariables(variables);</div><div class="line">            rejectTaskVoList.add(rejectTaskVo);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    map.put(<span class="string">"rejectTasks"</span>, rejectTaskVoList);</div><div class="line">    <span class="keyword">return</span> map;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="获取某个任务的评论"><a href="#获取某个任务的评论" class="headerlink" title="获取某个任务的评论"></a>获取某个任务的评论</h3><p>Controller实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/getComment"</span>, method = RequestMethod.GET)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getComment</span><span class="params">(String taskId)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> taskService.getCommentMessageByTaskId(taskId);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Service实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 根据taskId获取流程评论信息</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> taskId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">getCommentMessageByTaskId</span><span class="params">(String taskId)</span> </span>&#123;</div><div class="line"></div><div class="line">    Comment comment = getCommentByTaskId(taskId);</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">null</span> == comment) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">""</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> comment.getFullMessage();</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * 根据taskId获取流程评论</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> taskId</div><div class="line"> * <span class="doctag">@return</span></div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">private</span> Comment <span class="title">getCommentByTaskId</span><span class="params">(String taskId)</span> </span>&#123;</div><div class="line">    </div><div class="line">    List&lt;Comment&gt; commentList = taskService.getTaskComments(taskId, <span class="string">"reject"</span>);</div><div class="line">    <span class="keyword">if</span>(commentList.isEmpty()) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> commentList.get(<span class="number">0</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="驳回任务事件"><a href="#驳回任务事件" class="headerlink" title="驳回任务事件"></a>驳回任务事件</h3><p>Controller实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 驳回任务</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> taskId</div><div class="line"> * <span class="doctag">@param</span> completeTaskForm</div><div class="line"> */</div><div class="line"><span class="meta">@RequestMapping</span>(value = <span class="string">"/&#123;taskId&#125;/reverse"</span>, method = RequestMethod.POST)</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">rejectTask</span><span class="params">(@PathVariable String taskId, @RequestBody CompleteTaskForm completeTaskForm)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> taskService.rejectTask(taskId, completeTaskForm);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>Service实现<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 驳回</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> taskId</div><div class="line"> * <span class="doctag">@param</span> completeTaskForm</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">rejectTask</span><span class="params">(String taskId, CompleteTaskForm completeTaskForm)</span> </span>&#123;</div><div class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="keyword">if</span> (StringUtils.isNotBlank(taskId) &amp;&amp; <span class="keyword">null</span> != completeTaskForm) &#123;</div><div class="line">        <span class="keyword">if</span> (StringUtils.isBlank(completeTaskForm.getComment())) &#123; <span class="comment">//驳回的时候,驳回原因为必填项</span></div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> CjjClientException(ErrorCodes.ERR_REJECT_COMMENT_FAILED, ErrorMsgs.ERR_REVERSE_COMMENT_MSG);</div><div class="line">        &#125;</div><div class="line">        String processInstanceId = taskService.createTaskQuery().taskId(taskId).singleResult().getProcessInstanceId();</div><div class="line"></div><div class="line">        String actor = ParameterThreadLocal.getUid();</div><div class="line">        <span class="comment">//添加当前任务的完成者</span></div><div class="line">        Authentication.setAuthenticatedUserId(actor);</div><div class="line">        <span class="comment">//添加批注信息</span></div><div class="line">        taskService.addComment(taskId, processInstanceId, <span class="string">"reject"</span>, completeTaskForm.getComment());</div><div class="line">        String taskDefinitionKey = taskService.createTaskQuery().taskId(taskId).singleResult().getTaskDefinitionKey();</div><div class="line">        map.put(taskDefinitionKey + <span class="string">"_message"</span>, <span class="string">"no"</span>);</div><div class="line"></div><div class="line">        <span class="comment">//完成任务</span></div><div class="line">        taskService.complete(taskId, map);</div><div class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="完成任务实现"><a href="#完成任务实现" class="headerlink" title="完成任务实现"></a>完成任务实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * 完成任务</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span> taskId</div><div class="line"> * <span class="doctag">@param</span> completeTaskForm</div><div class="line"> */</div><div class="line"><span class="function"><span class="keyword">public</span> String <span class="title">completeTask</span><span class="params">(String taskId, CompleteTaskForm completeTaskForm)</span> </span>&#123;</div><div class="line">    Map&lt;String, Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</div><div class="line">    <span class="keyword">if</span> (StringUtils.isNotBlank(taskId) &amp;&amp; <span class="keyword">null</span> != completeTaskForm) &#123;</div><div class="line">        String processInstanceId = taskService.createTaskQuery().taskId(taskId).singleResult().getProcessInstanceId();</div><div class="line">        <span class="comment">//添加当前任务的完成者</span></div><div class="line">        String actor = ParameterThreadLocal.getUid();</div><div class="line">        Authentication.setAuthenticatedUserId(actor);</div><div class="line">        taskService.addComment(taskId, processInstanceId, <span class="string">"complete"</span>, <span class="string">"已完成"</span>);</div><div class="line">        String taskDefinitionKey = taskService.createTaskQuery().taskId(taskId).singleResult().getTaskDefinitionKey();</div><div class="line">        map.put(taskDefinitionKey + <span class="string">"_message"</span>, <span class="string">"yes"</span>);</div><div class="line">        <span class="comment">//将可能更新后的变量放入变量列表中</span></div><div class="line">        <span class="keyword">if</span> (completeTaskForm.getVariables() != <span class="keyword">null</span> &amp;&amp; completeTaskForm.getVariables().size() &gt; <span class="number">0</span>) &#123;</div><div class="line">            map.putAll(completeTaskForm.getVariables());</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        <span class="comment">//完成任务</span></div><div class="line">        taskService.complete(taskId, map);</div><div class="line">        <span class="keyword">return</span> <span class="string">"success"</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">"error"</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/流程引擎/2017/05/27/工作流引擎-TASK.html" data-id="cj3sqntz3000n8vfiux3qbji8" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/流程引擎/2017/05/27/工作流引擎-配置.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            FLOWABLE---配置
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/流程引擎/2017/05/27/工作流引擎-EXCUTION.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">工作流引擎---EXCUTION</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/流程引擎/2017/05/27/工作流引擎-TASK.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

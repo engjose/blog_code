@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>电商实战(二)---环境配置之VSFTP | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="电商后台" />
+    
+    <meta name="description" content="#电商实战(二)—环境配置之VSFTP由于环境配置比较多也比较繁杂,这里讲环境的配置分成两节进行记录,这样使得学习起来更有规律可循. 安装VSFTPD下载安装VSFTP服务器什么是vsftpd?vsftpd 是“very secure FTP daemon”的缩写，安全性是它的一个最大的特点。vsftpd 是一个 UNIX 类操作系统上运行的服务器的名字，它可以运行在诸如 Linux、BSD、So">
+<meta name="keywords" content="电商后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商实战(二)---环境配置之VSFTP">
+<meta property="og:url" content="http://www.fireworm.online/项目实战/2017/06/06/电商实战-二-环境配置.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="#电商实战(二)—环境配置之VSFTP由于环境配置比较多也比较繁杂,这里讲环境的配置分成两节进行记录,这样使得学习起来更有规律可循. 安装VSFTPD下载安装VSFTP服务器什么是vsftpd?vsftpd 是“very secure FTP daemon”的缩写，安全性是它的一个最大的特点。vsftpd 是一个 UNIX 类操作系统上运行的服务器的名字，它可以运行在诸如 Linux、BSD、So">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+<meta property="og:updated_time" content="2017-06-06T13:29:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商实战(二)---环境配置之VSFTP">
+<meta name="twitter:description" content="#电商实战(二)—环境配置之VSFTP由于环境配置比较多也比较繁杂,这里讲环境的配置分成两节进行记录,这样使得学习起来更有规律可循. 安装VSFTPD下载安装VSFTP服务器什么是vsftpd?vsftpd 是“very secure FTP daemon”的缩写，安全性是它的一个最大的特点。vsftpd 是一个 UNIX 类操作系统上运行的服务器的名字，它可以运行在诸如 Linux、BSD、So">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/项目实战/">项目实战</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-电商实战-二-环境配置" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        电商实战(二)---环境配置之VSFTP
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="article-date">
+            <time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/电商后台/">电商后台</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>#电商实战(二)—环境配置之VSFTP<br>由于环境配置比较多也比较繁杂,这里讲环境的配置分成两节进行记录,这样使得学习起来更有规律可循.</p>
+<h3 id="安装VSFTPD"><a href="#安装VSFTPD" class="headerlink" title="安装VSFTPD"></a>安装VSFTPD</h3><h4 id="下载安装VSFTP服务器"><a href="#下载安装VSFTP服务器" class="headerlink" title="下载安装VSFTP服务器"></a><font color="blue">下载安装VSFTP服务器</font></h4><p>什么是vsftpd?<br>vsftpd 是“very secure FTP daemon”的缩写，安全性是它的一个最大的特点。vsftpd 是一个 UNIX 类操作系统上运行的服务器的名字，它可以运行在诸如 Linux、BSD、Solaris、 HP-UNIX等系统上面，是一个完全免费的、开放源代码的ftp服务器软件，支持很多其他的 FTP 服务器所不支持的特征。比如：非常高的安全性需求、带宽限制、良好的可伸缩性、可创建虚拟用户、支持IPv6、速率高等</p>
+<p>打开终端输入以下命令进行安装vsftpd服务器:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux bin]# sudo yum -y install vsftpd</div></pre></td></tr></table></figure></p>
+<h4 id="配置VSFTP服务器—前奏"><a href="#配置VSFTP服务器—前奏" class="headerlink" title="配置VSFTP服务器—前奏"></a><font color="blue">配置VSFTP服务器—前奏</font></h4><p>1.在根目录下创建ftp文件夹,将来ftp上传的时候就会上传到这里:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux bin]# cd /</div><div class="line">[root@centos-linux /]# mkdir ftpfile</div></pre></td></tr></table></figure></p>
+<p>2.创建一个ftp用户<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux /]# sudo useradd ftpuser -d /ftpfile/ -s /sbin/nologin </div><div class="line">useradd: warning: the home directory already exists.</div><div class="line">Not copying any file from skel directory into it.</div><div class="line">-- -d /ftpfile/指定用户主目录为/ftpfile目录</div><div class="line">-- -s /sbin/nologin 表示没有登录权限</div></pre></td></tr></table></figure></p>
+<p>3.给用户分配权限:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux /]# sudo chown -R ftpuser.ftpuser /ftpfile/</div><div class="line">-- sudo chown改变用户权限</div><div class="line">-- R表示把/ftpfile/文件递归都生效</div></pre></td></tr></table></figure></p>
+<p>4.查询用户以及组<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux /]# ll | grep ftp</div><div class="line">drwxr-xr-x.   2 ftpuser ftpuser  4096 Jun  8 23:38 ftpfile</div><div class="line">-- 组和用户都是ftpuser</div></pre></td></tr></table></figure></p>
+<p>4.修改密码:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux /]# sudo passwd ftpuser</div><div class="line">-- 这里都修改为123456</div></pre></td></tr></table></figure></p>
+<p>5.进入到ftp目录创建一个测试文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux /]# cd /ftpfile/</div><div class="line">[root@centos-linux ftpfile]# vim index.html</div></pre></td></tr></table></figure></p>
+<h4 id="配置VSFTP服务器"><a href="#配置VSFTP服务器" class="headerlink" title="配置VSFTP服务器"></a><font color="blue">配置VSFTP服务器</font></h4><p>1.查找某一个文件的路径:whereis XXX<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# whereis vsftpd</div><div class="line">vsftpd: /usr/sbin/vsftpd /etc/vsftpd /usr/share/man/man8/vsftpd.8.gz</div></pre></td></tr></table></figure></p>
+<p>2.输入以下命令配置vsftpd的用户<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# sudo vim /etc/vsftpd/vsftpd.conf</div></pre></td></tr></table></figure></p>
+<p>3.搜索banner的节点进行配置<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">/banner <span class="comment">-- 搜索banner节点</span></div><div class="line"></div><div class="line"><span class="comment">-- 找到该节点之后配置如下</span></div><div class="line">ftpd_banner=Welcome to JOSE FTP service.</div><div class="line">local_root=/ftpfile <span class="comment">-- 登录后访问的路径</span></div><div class="line">anon_root=/ftpfile <span class="comment">-- 怒名用户访问的路径</span></div></pre></td></tr></table></figure></p>
+<p>4.搜索chroot_list节点进行配置<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">/chroot_list -- 搜索到之后配置如下</div><div class="line"></div><div class="line">chroot_list_enable=YES</div><div class="line"># (default follows)</div><div class="line">chroot_list_file=/etc/vsftpd/chroot_list</div></pre></td></tr></table></figure></p>
+<p>4.搜索anon,配置匿名访问<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">/anon <span class="comment">-- 搜索到之后配置如下</span></div><div class="line"></div><div class="line">anonymous_enable=NO</div></pre></td></tr></table></figure></p>
+<p>5.复制刚才配置的chroot_list的最后路径并创建该文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">chroot_list_file=/etc/vsftpd/chroot_list</div><div class="line"></div><div class="line">[root@centos-linux ~]# cd /etc/vsftpd/</div><div class="line">[root@centos-linux vsftpd]# vim chroot_list</div><div class="line"></div><div class="line">-- 创建好文件之后添加用户(ftpuser)到chroot_list中</div><div class="line">ftpuser</div></pre></td></tr></table></figure></p>
+<p>6.在配置文件的末尾添加最小和最大端口<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">pam_service_name=vsftpd</div><div class="line">userlist_enable=YES</div><div class="line">tcp_wrappers=YES</div><div class="line"></div><div class="line">pasv_min_port=61001</div><div class="line">pasv_max_port=62000</div></pre></td></tr></table></figure></p>
+<p>7.配置防火墙,打开防火墙配置文件,增加如下配置:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux vsftpd]# sudo vim /etc/sysconfig/iptables</div><div class="line">#vsftpd</div><div class="line">-A INPUT -p TCP --dport 61001:62000 -j ACCEPT</div><div class="line">-A OUTPUT -p TCP --sport 61001:62000 -j ACCEPT</div><div class="line"></div><div class="line">-A INPUT -p TCP --dport 20 -j ACCEPT</div><div class="line">-A OUTPUT -p TCP --dport 20 -j ACCEPT</div><div class="line">-A INPUT -p TCP --dport 21 -j ACCEPT</div><div class="line">-A OUTPUT -p TCP --dport 21 -j ACCEPT</div></pre></td></tr></table></figure></p>
+<p>8.重启防火墙和vsftpd服务器<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux vsftpd]# sudo service iptables restart</div><div class="line">[root@centos-linux vsftpd]# sudo service vsftpd restart</div><div class="line">Shutting down vsftpd:                                      [  OK  ]</div><div class="line">Starting vsftpd for vsftpd:                                [  OK  ]</div></pre></td></tr></table></figure></p>
+<p>9修改selinux配置文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ftpfile]# sudo vim /etc/selinux/config</div><div class="line">SELINUX=disable</div><div class="line"></div><div class="line">-- 使其生效</div><div class="line">[root@centos-linux ftpfile]# sudo setenforce 0</div></pre></td></tr></table></figure></p>
+<p>10.打开终端连接ftp服务器:ftp xxx<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">shizhengyangdeMacBook-Pro% ftp 10.211.55.3</div><div class="line">Connected to 10.211.55.3.</div><div class="line">220 Welcome to JOSE FTP service.</div><div class="line"></div><div class="line"><span class="comment">-- 输入ftpuser进行登录</span></div><div class="line">Name (10.211.55.3:panyuanyuan): ftpuser</div><div class="line">331 Please specify the password.</div><div class="line">Password:</div><div class="line">230 Login successful.</div><div class="line">Remote system type is UNIX.</div><div class="line">Using binary mode to transfer files.</div></pre></td></tr></table></figure></p>
+<p><font color="red">注意点:</font><br>编辑vsftpd的配置文件时,注意如下的配置要采用默认配置为NO,如果配置为NO证明我们不能访问上一级目录,如果配置为YES说明我们可以访问到上一级目录中<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# vim /etc/vsftpd/vsftpd.conf </div><div class="line">#chroot_local_user=YES -- 默认注释掉</div></pre></td></tr></table></figure></p>
+<p>当切换目录时,虽然提示成功,但是dir时还在这个目录中,这样比较安全<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">ftp&gt; dir</div><div class="line">229 Entering Extended Passive Mode (|||61370|).</div><div class="line">150 Here comes the directory listing.</div><div class="line">drwxr-xr-x    2 501      501          4096 Jun 10 11:08 aa</div><div class="line">drwxr-xr-x    2 501      501          4096 Jun 10 11:23 ceshi</div><div class="line">-rw-r--r--    1 0        0              17 Jun 08 23:54 index.html</div><div class="line">226 Directory send OK.</div><div class="line">ftp&gt; cd ..</div><div class="line">250 Directory successfully changed.</div><div class="line">ftp&gt; dir</div><div class="line">229 Entering Extended Passive Mode (|||61242|).</div><div class="line">150 Here comes the directory listing.</div><div class="line">drwxr-xr-x    2 501      501          4096 Jun 10 11:08 aa</div><div class="line">drwxr-xr-x    2 501      501          4096 Jun 10 11:23 ceshi</div><div class="line">-rw-r--r--    1 0        0              17 Jun 08 23:54 index.html</div><div class="line">226 Directory send OK.</div></pre></td></tr></table></figure></p>
+<p>11.打开浏览器或者ftp链接工具测试<br><img src="http://oayt7zau6.bkt.clouddn.com/%E6%B5%8F%E8%A7%88%E5%99%A8_FTP.jpg" alt="enter image description here"><br><img src="http://oayt7zau6.bkt.clouddn.com/%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7FTP.jpg" alt="enter image description here"></p>
+<h3 id="完结"><a href="#完结" class="headerlink" title="完结"></a>完结</h3><p>到这里FTP服务器的搭建和安装结束</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/项目实战/2017/06/06/电商实战-二-环境配置.html" data-id="cj3sqntzh00108vfib3wjqpln" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            电商实战(三)---环境配置之NGINX
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/项目实战/2017/06/06/电商实战-一-环境配置.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">电商实战(一)---环境配置之JDK|Tomcat</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/项目实战/2017/06/06/电商实战-二-环境配置.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

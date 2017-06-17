@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>电商实战(一)---环境配置之JDK|Tomcat | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="电商后台" />
+    
+    <meta name="description" content="CentOS常用命令CentOs图形界面启动图形界面启动后输入:1init 5 查询某个已经安装软件的版本1rpm -qa | grep jdk 查询结果12java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64java-1.6.0-openjdk-1.6.0.38-1.13.10.4.el6.x86_64 删除默认openjdk1sudo yum remov">
+<meta name="keywords" content="电商后台">
+<meta property="og:type" content="article">
+<meta property="og:title" content="电商实战(一)---环境配置之JDK|Tomcat">
+<meta property="og:url" content="http://www.fireworm.online/项目实战/2017/06/06/电商实战-一-环境配置.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="CentOS常用命令CentOs图形界面启动图形界面启动后输入:1init 5 查询某个已经安装软件的版本1rpm -qa | grep jdk 查询结果12java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64java-1.6.0-openjdk-1.6.0.38-1.13.10.4.el6.x86_64 删除默认openjdk1sudo yum remov">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+<meta property="og:updated_time" content="2017-06-06T13:29:11.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="电商实战(一)---环境配置之JDK|Tomcat">
+<meta name="twitter:description" content="CentOS常用命令CentOs图形界面启动图形界面启动后输入:1init 5 查询某个已经安装软件的版本1rpm -qa | grep jdk 查询结果12java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64java-1.6.0-openjdk-1.6.0.38-1.13.10.4.el6.x86_64 删除默认openjdk1sudo yum remov">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/项目实战/">项目实战</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-电商实战-一-环境配置" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        电商实战(一)---环境配置之JDK|Tomcat
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/项目实战/2017/06/06/电商实战-一-环境配置.html" class="article-date">
+            <time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/电商后台/">电商后台</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="CentOS常用命令"><a href="#CentOS常用命令" class="headerlink" title="CentOS常用命令"></a>CentOS常用命令</h3><h4 id="CentOs图形界面启动"><a href="#CentOs图形界面启动" class="headerlink" title="CentOs图形界面启动"></a><font color="blue">CentOs图形界面启动</font></h4><p>图形界面启动后输入:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">init 5</div></pre></td></tr></table></figure></p>
+<h4 id="查询某个已经安装软件的版本"><a href="#查询某个已经安装软件的版本" class="headerlink" title="查询某个已经安装软件的版本"></a><font color="blue">查询某个已经安装软件的版本</font></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -qa | grep jdk</div></pre></td></tr></table></figure>
+<h4 id="查询结果"><a href="#查询结果" class="headerlink" title="查询结果"></a><font color="blue">查询结果</font></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64</div><div class="line">java-1.6.0-openjdk-1.6.0.38-1.13.10.4.el6.x86_64</div></pre></td></tr></table></figure>
+<h4 id="删除默认openjdk"><a href="#删除默认openjdk" class="headerlink" title="删除默认openjdk"></a><font color="blue">删除默认openjdk</font></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo yum remove java-1.7.0-openjdk-1.7.0.99-2.6.5.1.el6.x86_64</div></pre></td></tr></table></figure>
+<h4 id="CentOs切换用户到root"><a href="#CentOs切换用户到root" class="headerlink" title="CentOs切换用户到root"></a><font color="blue">CentOs切换用户到root</font></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">su root</div></pre></td></tr></table></figure>
+<h3 id="下载安装java"><a href="#下载安装java" class="headerlink" title="下载安装java"></a>下载安装java</h3><p>去oracle官网下载相应的java版本,这里选择的是jdk-7u80-linux-x64.rpm版本,当在浏览器中下载时,点击取消,复制其下载地址</p>
+<h4 id="终端下载"><a href="#终端下载" class="headerlink" title="终端下载"></a><font color="blue">终端下载</font></h4><p>打开终端,输入<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget xxxx(下载地址)</div><div class="line">wget http://101.44.1.119/files/9067000003768140/download.oracle.com/otn-pub/java/jdk/7u80-b15/jdk-7u80-linux-x64.rpm</div></pre></td></tr></table></figure></p>
+<p>下载完成之后,输入ls查看下载目录中多了:jdk-7u80-linux-x64.rpm文件</p>
+<h4 id="解压安装"><a href="#解压安装" class="headerlink" title="解压安装"></a><font color="blue">解压安装</font></h4><p>进入jdk下载的目录中输入:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo rpm -ivh jdk-7u80-linux-x64.rpm</div></pre></td></tr></table></figure></p>
+<p>等待安装完成,默认安装路径/user/java,进入路径查看<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux developer]# cd /usr/java/</div><div class="line">[root@centos-linux java]# ls</div><div class="line">default  jdk1.7.0_80  latest</div></pre></td></tr></table></figure></p>
+<h4 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a><font color="blue">配置环境变量</font></h4><p>进入jdk安装目录:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux java]# cd /usr/java/jdk1.7.0_80/</div><div class="line">[root@centos-linux jdk1.7.0_80]# ls</div><div class="line">bin        lib          src.zip</div><div class="line">COPYRIGHT  LICENSE      THIRDPARTYLICENSEREADME-JAVAFX.txt</div><div class="line">db         man          THIRDPARTYLICENSEREADME.txt</div><div class="line">include    README.html</div><div class="line">jre        release</div></pre></td></tr></table></figure></p>
+<p>编辑/etc/profile配置环境变量:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/profile</div></pre></td></tr></table></figure></p>
+<p>编辑文件末尾配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">for i in /etc/profile.d/*.sh ; do</div><div class="line">    if [ -r &quot;$i&quot; ]; then</div><div class="line">        if [ &quot;$&#123;-#*i&#125;&quot; != &quot;$-&quot; ]; then</div><div class="line">            . &quot;$i&quot;</div><div class="line">        else</div><div class="line">            . &quot;$i&quot; &gt;/dev/null 2&gt;&amp;1</div><div class="line">        fi</div><div class="line">    fi</div><div class="line">done</div><div class="line"></div><div class="line">unset i</div><div class="line">unset -f pathmunge</div><div class="line"></div><div class="line">export JAVA_HOME=/usr/java/jdk1.7.0_80</div><div class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div></pre></td></tr></table></figure></p>
+<p>使配置文件立即生效:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux jdk1.7.0_80]# source /etc/profile</div></pre></td></tr></table></figure></p>
+<p>至此java安装完成.</p>
+<h3 id="下载安装Tomcat"><a href="#下载安装Tomcat" class="headerlink" title="下载安装Tomcat"></a>下载安装Tomcat</h3><h4 id="下载Tomcat"><a href="#下载Tomcat" class="headerlink" title="下载Tomcat"></a><font color="blue">下载Tomcat</font></h4><p>进入我们创建的目录/developer下,进行下载,这里使用的下载地址是:<a href="http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz" target="_blank" rel="external">http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz</a><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux Desktop]# cd /developer/</div><div class="line">[root@centos-linux developer]# ls</div><div class="line">jdk-7u80-linux-x64.rpm</div><div class="line">[root@centos-linux developer]# wget http://learning.happymmall.com/tomcat/apache-tomcat-7.0.73.tar.gz</div></pre></td></tr></table></figure></p>
+<h4 id="解压下载的压缩包"><a href="#解压下载的压缩包" class="headerlink" title="解压下载的压缩包"></a><font color="blue">解压下载的压缩包</font></h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf apache-tomcat-7.0.73.tar.gz</div></pre></td></tr></table></figure>
+<p>查看解压结果:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux developer]# ll</div><div class="line">drwxr-xr-x. 9 root root      4096 Jun  8 00:05 apache-tomcat-7.0.73</div></pre></td></tr></table></figure></p>
+<h4 id="修改Tomcat字符集编码"><a href="#修改Tomcat字符集编码" class="headerlink" title="修改Tomcat字符集编码"></a><font color="blue">修改Tomcat字符集编码</font></h4><p>进入到Tomcat目录,编辑conf/server.xml<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo vim conf/server.xml </div><div class="line">-- 找到server.xml文件添加URIEncoding="UTF-8"</div><div class="line">&lt;Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" URIEncoding="UTF-8" /&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="启动Tomcat服务器"><a href="#启动Tomcat服务器" class="headerlink" title="启动Tomcat服务器"></a><font color="blue">启动Tomcat服务器</font></h4><p>进入到bin目录执行以下命令,看到started就证明启动成功<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux apache-tomcat-7.0.73]# cd bin/</div><div class="line">[root@centos-linux bin]# ./startup.sh </div><div class="line">Using CATALINA_BASE:   /java_tool/apache-tomcat-7.0.73</div><div class="line">Using CATALINA_HOME:   /java_tool/apache-tomcat-7.0.73</div><div class="line">Using CATALINA_TMPDIR: /java_tool/apache-tomcat-7.0.73/temp</div><div class="line">Using JRE_HOME:        /usr/java/jdk1.7.0_80</div><div class="line">Using CLASSPATH:       /java_tool/apache-tomcat-7.0.73/bin/bootstrap.jar:/java_tool/apache-tomcat-7.0.73/bin/tomcat-juli.jar</div><div class="line">Tomcat started.</div></pre></td></tr></table></figure></p>
+<p>访问linux对应的ip地址发现不能访问到Tomcat,这是因为我们没有关闭防火墙,执行以下的命令关闭防火墙后继续访问xxxx:8080发现访问成功.<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux ~]# service iptables stop</div><div class="line">iptables: Setting chains to policy ACCEPT: mangle nat filte[  OK  ]</div><div class="line">iptables: Flushing firewall rules:                         [  OK  ]</div><div class="line">iptables: Unloading modules:                               [  OK  ]</div></pre></td></tr></table></figure></p>
+<h3 id="Maven安安装"><a href="#Maven安安装" class="headerlink" title="Maven安安装"></a>Maven安安装</h3><h4 id="Maven下载和解压缩"><a href="#Maven下载和解压缩" class="headerlink" title="Maven下载和解压缩"></a><font color="blue">Maven下载和解压缩</font></h4><p>进入到终端命令行,找到下载源输入以下命令进行下载:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux developer]# wget http://learning.happymmall.com/maven/apache-maven-3.0.5-bin.tar.gz</div></pre></td></tr></table></figure></p>
+<p>等待下载完毕后解压缩:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux developer]# ll</div><div class="line">total 148620</div><div class="line">-rw-r--r--. 1 root root   5144659 Apr 17 12:21 apache-maven-3.0.5-bin.tar.gz</div><div class="line">-rw-r--r--. 1 root root   8938514 Apr 17 12:22 apache-tomcat-7.0.73.tar.gz</div><div class="line">-rw-r--r--. 1 root root 138090286 May 19  2015 jdk-7u80-linux-x64.rpm</div><div class="line">[root@centos-linux developer]# tar -zxvf apache-maven-3.0.5-bin.tar.gz</div></pre></td></tr></table></figure></p>
+<p>移动解压好的maven包到指定目录(工具安装包)<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux developer]# mv apache-maven-3.0.5 /java_tool/</div></pre></td></tr></table></figure></p>
+<h4 id="配置Maven的环境变量"><a href="#配置Maven的环境变量" class="headerlink" title="配置Maven的环境变量"></a><font color="blue">配置Maven的环境变量</font></h4><p>1.找到maven的解压路径并复制:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd /java_tool/apache-maven-3.0.5</div></pre></td></tr></table></figure></p>
+<p>2.编辑/etc/profile文件,加入环境变量:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo vim /etc/profile</div></pre></td></tr></table></figure></p>
+<p>3.在文件末尾添加如下的配置:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/usr/java/jdk1.7.0_80</div><div class="line">export MAVEN_HOME=/java_tool/apache-maven-3.0.5</div><div class="line">export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</div><div class="line">export PATH=$JAVA_HOME/bin:$MAVEN_HOME/bin:$PATH</div></pre></td></tr></table></figure></p>
+<p>4.使文件立即生效:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux bin]# source /etc/profile</div></pre></td></tr></table></figure></p>
+<p>5.验证Maven环境变量:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">[root@centos-linux bin]# mvn -version</div><div class="line">Apache Maven 3.0.5 (r01de14724cdef164cd33c7c8c2fe155faf9602da; 2013-02-19 21:51:28+0800)</div><div class="line">Maven home: /java_tool/apache-maven-3.0.5</div><div class="line">Java version: 1.7.0_80, vendor: Oracle Corporation</div><div class="line">Java home: /usr/java/jdk1.7.0_80/jre</div><div class="line">Default locale: en_US, platform encoding: UTF-8</div><div class="line">OS name: "linux", version: "2.6.32-642.el6.x86_64", arch: "amd64", family: "unix"</div></pre></td></tr></table></figure></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/项目实战/2017/06/06/电商实战-一-环境配置.html" data-id="cj3sqntz6000p8vfihz02qeyk" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            电商实战(二)---环境配置之VSFTP
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/uncategorized/2017/06/04/图解HTTP协议-一-了解WEB及网络基础.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">图解HTTP协议(一)---了解WEB及网络基础</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/项目实战/2017/06/06/电商实战-一-环境配置.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

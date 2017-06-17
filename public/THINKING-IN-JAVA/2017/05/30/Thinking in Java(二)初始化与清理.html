@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Thinking in Java(二)初始化与清理 | SUPER-JOSE-大叔的技术博客</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="读书笔记" />
+    
+    <meta name="description" content="构造方法保证初始化 java会在用户操作对象之前自动调用相应的构造器,从而保证了初始化的进行 构造器是一种特殊的方法,因为它没有返回值,这与返回值void有明显的不通,构造器不会返回任何的东西  区分方法的重载重载的背景:在任何的编程语言中,相同的词语可以表达多种不同的含义—它们被重载了 区分重载方法: 每个重载的方法都必须有一个独一无二的参数列表 其实参数顺序也可以区分,但是一般不这么做,因为这">
+<meta name="keywords" content="读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Thinking in Java(二)初始化与清理">
+<meta property="og:url" content="http://www.fireworm.online/THINKING-IN-JAVA/2017/05/30/Thinking in Java(二)初始化与清理.html">
+<meta property="og:site_name" content="SUPER-JOSE-大叔的技术博客">
+<meta property="og:description" content="构造方法保证初始化 java会在用户操作对象之前自动调用相应的构造器,从而保证了初始化的进行 构造器是一种特殊的方法,因为它没有返回值,这与返回值void有明显的不通,构造器不会返回任何的东西  区分方法的重载重载的背景:在任何的编程语言中,相同的词语可以表达多种不同的含义—它们被重载了 区分重载方法: 每个重载的方法都必须有一个独一无二的参数列表 其实参数顺序也可以区分,但是一般不这么做,因为这">
+<meta property="og:image" content="http://oayt7zau6.bkt.clouddn.com/thinking_in_java_basic.jpg">
+<meta property="og:updated_time" content="2017-05-30T13:51:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Thinking in Java(二)初始化与清理">
+<meta name="twitter:description" content="构造方法保证初始化 java会在用户操作对象之前自动调用相应的构造器,从而保证了初始化的进行 构造器是一种特殊的方法,因为它没有返回值,这与返回值void有明显的不通,构造器不会返回任何的东西  区分方法的重载重载的背景:在任何的编程语言中,相同的词语可以表达多种不同的含义—它们被重载了 区分重载方法: 每个重载的方法都必须有一个独一无二的参数列表 其实参数顺序也可以区分,但是一般不这么做,因为这">
+<meta name="twitter:image" content="http://oayt7zau6.bkt.clouddn.com/thinking_in_java_basic.jpg">
+    
+
+    
+        <link rel="alternate" href="/" title="SUPER-JOSE-大叔的技术博客" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">There is no shortcut is a permanent shortcut</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/categorys">Category</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/tags">Tag</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Archive</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-Thinking in Java(二)初始化与清理" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Thinking in Java(二)初始化与清理
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/THINKING-IN-JAVA/2017/05/30/Thinking in Java(二)初始化与清理.html" class="article-date">
+            <time datetime="2017-05-30T13:51:53.000Z" itemprop="datePublished">2017-05-30</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/读书笔记/">读书笔记</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h3 id="构造方法保证初始化"><a href="#构造方法保证初始化" class="headerlink" title="构造方法保证初始化"></a>构造方法保证初始化</h3><ol>
+<li>java会在用户操作对象之前自动调用相应的构造器,从而保证了初始化的进行</li>
+<li>构造器是一种特殊的方法,因为它没有返回值,这与返回值void有明显的不通,构造器不会返回任何的东西</li>
+</ol>
+<h3 id="区分方法的重载"><a href="#区分方法的重载" class="headerlink" title="区分方法的重载"></a>区分方法的重载</h3><h4 id="重载的背景"><a href="#重载的背景" class="headerlink" title="重载的背景:"></a><font color="blue">重载的背景:</font><br></h4><p>在任何的编程语言中,相同的词语可以表达多种不同的含义—它们被重载了</p>
+<h4 id="区分重载方法"><a href="#区分重载方法" class="headerlink" title="区分重载方法:"></a><font color="blue">区分重载方法:</font><br></h4><ol>
+<li>每个重载的方法都必须有一个独一无二的参数列表</li>
+<li>其实参数顺序也可以区分,但是一般不这么做,因为这样使代码难以维护</li>
+<li>方法的重载与返回值类型无关</li>
+</ol>
+<h3 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h3><h4 id="代表当前对象的引用"><a href="#代表当前对象的引用" class="headerlink" title="代表当前对象的引用"></a><font color="blue">代表当前对象的引用</font></h4><p>假设你希望在方法的内部获取对当前对象的引用.由于这个引用是由编译器偷偷传递进去的,所以没有什么标识符可用;因此为了表示当前对象的引用,java引入了this关键字,它代表对当前对象的引用<br><br>如果方法要返回当前对象的引用:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Leaf</span> </span>&#123;</div><div class="line">  <span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line">  <span class="function">Leaf <span class="title">increament</span><span class="params">()</span> </span>&#123;</div><div class="line">    i++;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="在构造器中调用构造器"><a href="#在构造器中调用构造器" class="headerlink" title="在构造器中调用构造器"></a><font color="blue">在构造器中调用构造器</font></h4><p>如果在构造器中需要调用其他的构造器,我们就可以使用this(param1, param2, …)的形式进行调用</p>
+<h3 id="垃圾回收器如何工作"><a href="#垃圾回收器如何工作" class="headerlink" title="垃圾回收器如何工作"></a>垃圾回收器如何工作</h3><p>在C和C++语言中在堆内存上分配对象是非常昂贵的;然而,垃圾回收器提高了对象分配的效率,存储空间的释放会影响存储空间的分配.这也意味着java从堆内存分配空间的速度可以和其他语言从堆栈上分配的速度相媲美.</p>
+<h4 id="垃圾回收—引用计数器算法"><a href="#垃圾回收—引用计数器算法" class="headerlink" title="垃圾回收—引用计数器算法"></a><font color="blue">垃圾回收—引用计数器算法</font></h4><p>引用计数器是一种简单但是速度很慢的垃圾回收技术:每个对象都含有一个引用计数器,当有引用链接到对象时计数器+1.当有引用离开对象或者置为null时,引用计数器-1.垃圾回收器会在全部对象的列表上遍历,当发现某个对象的引用计数器是0的时候,就释放其所占用的空间.引用计数器尝尝用来说明垃圾回收器的工作方式,但是从未应用于任何一种java虚拟机中.</p>
+<h4 id="垃圾回收—停止-复制"><a href="#垃圾回收—停止-复制" class="headerlink" title="垃圾回收—停止-复制"></a><font color="blue">垃圾回收—停止-复制</font></h4><p>在一些更快的模式中,垃圾回收并非采用引用计数的模式.他们的依据思想是:<br>对于任何活的对象,一定能最终追溯到其存活的堆栈或者静态区域中的引用.对于如何找到存活的对象,不同的虚拟机实现不同,有一种做法是停止-复制:显然这种做法是先停止程序的运行,然后将存活的对象复制到另外的一块空间中.</p>
+<h5 id="停止-复制算法的弊端"><a href="#停止-复制算法的弊端" class="headerlink" title="停止-复制算法的弊端"></a><font color="red">停止-复制算法的弊端</font></h5><ol>
+<li>把对象从一处搬运到另外一处,所指向它的引用都必须进行修正.</li>
+<li>需要两个分离的堆内存之间进行倒腾</li>
+<li>程序稳定之后可能产生少量的垃圾甚至没有垃圾,但是还是会停止-复制</li>
+</ol>
+<h4 id="垃圾回收—标记-清扫"><a href="#垃圾回收—标记-清扫" class="headerlink" title="垃圾回收—标记-清扫"></a><font color="blue">垃圾回收—标记-清扫</font></h4><p>为了避免上面停止-复制产生的弊端,又提出来了另外的一种模式:标记-清扫.早起sun公司的虚拟机就采用了这个.标记-清扫所依据的思想仍然是从堆栈和存储区域触发,遍历所有的引用,进而找到所有存活的对象,每当它找到一个就会打一个标记,这个过程不会回收任何的对象,只有全部标记完成之后,清理动作才会开始,在清理的过程中没有打标记的对象将会被释放,不会发生任何的复制动作,同停止-复制一样标记-清扫不是在后台运行的,也必须得停止程序.</p>
+<h5 id="标记-清扫算法的弊端"><a href="#标记-清扫算法的弊端" class="headerlink" title="标记-清扫算法的弊端"></a><font color="red">标记-清扫算法的弊端</font></h5><ol>
+<li>垃圾清除之后剩下的堆内存不是连续的</li>
+<li>一般标记-清扫速度非常慢,之后当产生垃圾非常少或者不产生垃圾的时候,它的速度就很快了</li>
+</ol>
+<h3 id="综合考虑—自适应"><a href="#综合考虑—自适应" class="headerlink" title="综合考虑—自适应"></a>综合考虑—自适应</h3><p>其实上面的暂停-复制和标记-清扫两种算法在虚拟机中都会用到.java虚拟机会进行自动监视:如果内存对象变动比较大,出现很多内存碎片,有大块的内存需要回收就采用停止-复制算法;但是当虚拟机发现所有的对象都很稳定,垃圾回收的速率比较低,就会切换到标记-清扫方式.这种自我调节的方式就是自适应技术.</p>
+<h3 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h3><p>无论创建多少个对象,静态数据只会占用一份存储空间.static关键字不能用于局部变量</p>
+<h4 id="静态数据初始化时机"><a href="#静态数据初始化时机" class="headerlink" title="静态数据初始化时机"></a><font color="blue">静态数据初始化时机</font></h4><p>当首次生成这个类的一个对象时或者首次访问那个类的静态数据成员时,进行静态区域的加载</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://www.fireworm.online/THINKING-IN-JAVA/2017/05/30/Thinking in Java(二)初始化与清理.html" data-id="cj3sqntyd00068vfiym66prm1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>FOLLOW:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="email" href="/panyuanyuan1024@163.com" target="_blank">
+                        <i class="icon fa fa-email"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/engjose" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/uncategorized/2017/06/04/图解HTTP协议-一-了解WEB及网络基础.html" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            图解HTTP协议(一)---了解WEB及网络基础
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/流程引擎/2017/05/27/工作流引擎-配置.html" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">FLOWABLE---配置</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(五)---数据库设计" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-五-数据库设计.html" class="title">电商实战(五)---数据库设计</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(六)---项目初始化一" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-六-项目初始化.html" class="title">电商实战(六)---项目初始化一</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(四)---环境配置之Mysql|Git" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-四-环境配置之Mysql-Git.html" class="title">电商实战(四)---环境配置之Mysql|Git</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(三)---环境配置之NGINX" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-三-环境配置之NGIX.html" class="title">电商实战(三)---环境配置之NGINX</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="thumbnail">
+    
+    
+        <span style="background-image:url(http://oayt7zau6.bkt.clouddn.com/%E7%94%B5%E5%95%861.jpg)" alt="电商实战(二)---环境配置之VSFTP" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/项目实战/">项目实战</a></p>
+                            <p class="item-title"><a href="/项目实战/2017/06/06/电商实战-二-环境配置.html" class="title">电商实战(二)---环境配置之VSFTP</a></p>
+                            <p class="item-date"><time datetime="2017-06-06T13:29:11.000Z" itemprop="datePublished">2017-06-06</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/THINKING-IN-JAVA/">THINKING IN JAVA</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/javaSE/">javaSE</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/mysql/">mysql</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/工具类/">工具类</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/流程引擎/">流程引擎</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/项目实战/">项目实战</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">五月 2017</a><span class="archive-list-count">11</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BigDecimal数据类型/">BigDecimal数据类型</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql基础/">mysql基础</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/流程引擎/">流程引擎</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/电商后台/">电商后台</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/读书笔记/">读书笔记</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/链接查询/">链接查询</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/集合体系/">集合体系</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/BigDecimal数据类型/" style="font-size: 10px;">BigDecimal数据类型</a> <a href="/tags/mysql基础/" style="font-size: 10px;">mysql基础</a> <a href="/tags/流程引擎/" style="font-size: 16.67px;">流程引擎</a> <a href="/tags/电商后台/" style="font-size: 20px;">电商后台</a> <a href="/tags/读书笔记/" style="font-size: 13.33px;">读书笔记</a> <a href="/tags/链接查询/" style="font-size: 10px;">链接查询</a> <a href="/tags/集合体系/" style="font-size: 13.33px;">集合体系</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/engjose">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2017 SUPER-JOSE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://www.fireworm.online/THINKING-IN-JAVA/2017/05/30/Thinking in Java(二)初始化与清理.html';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
